@@ -27,7 +27,7 @@ export default function Home() {
           }}
         />
         
-        <div className="relative z-10 w-1/2 max-w-[700px] ml-auto pl-24 pr-16" style={{ color: '#ffffff' }}>
+        <div className="relative z-10 w-1/2 max-w-[800px] ml-auto pl-32 pr-20" style={{ color: '#ffffff' }}>
           <h1 className="text-7xl leading-[0.95] tracking-tight mb-8" style={{ color: '#ffffff' }}>
             You're not lost.<br />You're in a pattern.
           </h1>
