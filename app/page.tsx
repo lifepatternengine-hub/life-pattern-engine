@@ -35,41 +35,25 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#0a0a0f]">
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0 grid grid-cols-2">
-          <div className="relative">
-            <img
-              src="/mosaic.png"
-              alt=""
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-          </div>
-          <div className="bg-gradient-to-br from-[#1a0a1f] via-[#0a0a0f] to-[#0f0a1a]" />
-        </div>
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-8 py-24 w-full">
-          <div className="grid grid-cols-2 gap-16 items-center">
-            <div />
-            <div className="space-y-8">
-              <h1 className="text-7xl font-light leading-[0.95] tracking-tight text-white">
-                You're not lost.<br />
-                You're in a pattern.
-              </h1>
-              
-              <p className="text-xl text-gray-400 max-w-xl font-light leading-relaxed">
-                A diagnostic tool that maps your professional situation against 15 recognizable patterns experienced in midlife.
-              </p>
-              
-              <a
-                href="https://tally.so/r/vG2rO8"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-8 py-4 bg-white text-black font-medium hover:bg-gray-200 transition-colors duration-200"
-              >
-                Start the diagnostic
-              </a>
-            </div>
-          </div>
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#1a0a1f] via-[#0a0a0f] to-[#0f0a1a]">
+        <div className="relative z-10 max-w-4xl mx-auto px-8 py-24 text-center">
+          <h1 className="text-7xl font-light leading-[0.95] tracking-tight text-white mb-8">
+            You are not lost.<br />
+            You are in a pattern.
+          </h1>
+          
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto font-light leading-relaxed mb-8">
+            A diagnostic tool that maps your professional situation against 15 recognizable patterns experienced in midlife.
+          </p>
+          
+          <a
+            href="https://tally.so/r/vG2rO8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-8 py-4 bg-white text-black font-medium hover:bg-gray-200 transition-colors duration-200"
+          >
+            Start the diagnostic
+          </a>
         </div>
       </section>
 
