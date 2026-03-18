@@ -27,7 +27,7 @@ export default function Home() {
           }}
         />
         
-        <div className="relative z-10 w-1/2 max-w-[700px] ml-auto pl-12 pr-12">
+        <div className="relative z-10 w-1/2 max-w-[700px] ml-auto pl-20 pr-12">
           <h1 className="text-7xl leading-[0.95] tracking-tight mb-8" style={{ color: '#ffffff' }}>
             You're not lost.<br />You're in a pattern.
           </h1>
@@ -47,8 +47,8 @@ export default function Home() {
 
       <section className="py-32 px-8 bg-[#0f0a1a]">
         <div className="max-w-[1000px] mx-auto">
-          <h2 className="text-5xl text-white mb-12">About</h2>
-          <div className="space-y-6 text-lg text-gray-300 font-light leading-relaxed">
+          <h2 className="text-5xl mb-12" style={{ color: '#ffffff' }}>About</h2>
+          <div className="space-y-6 text-lg font-light leading-relaxed" style={{ color: '#d1d5db' }}>
             <p>
               Feeling stuck or lost professionally is not unique — it follows patterns. The Life Pattern Engine is built on the observation that midlife professional transitions cluster around specific, recognizable configurations.
             </p>
