@@ -11,7 +11,7 @@ export default function Home() {
         }
       `}</style>
 
-      <section className="relative min-h-screen flex items-center justify-end px-8 py-24 overflow-hidden">
+      <section className="relative min-h-screen flex items-center px-8 py-24 overflow-hidden">
         <div className="absolute top-0 bottom-0 left-0 w-1/2 overflow-hidden">
           <img 
             src="/mosaic.png" 
@@ -27,7 +27,7 @@ export default function Home() {
           }}
         />
         
-        <div className="relative z-10 w-1/2 max-w-[700px] pr-8">
+        <div className="relative z-10 w-1/2 max-w-[700px] ml-auto pr-8">
           <h1 className="text-7xl leading-[0.95] tracking-tight text-white mb-8">
             You're not lost.<br />You're in a pattern.
           </h1>
