@@ -11,8 +11,8 @@ export default function Home() {
         }
       `}</style>
 
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0 flex">
+      <section className="relative flex items-center overflow-hidden" style={{ minHeight: '100vh' }}>
+        <div className="absolute inset-0 flex" style={{ height: '100vh' }}>
           <div 
             className="w-1/2" 
             style={{
