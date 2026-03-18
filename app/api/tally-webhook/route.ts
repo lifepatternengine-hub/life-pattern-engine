@@ -83,7 +83,7 @@ export async function POST(request: NextRequest) {
     const scores = calculateScores(answers);
     
     // Get top two archetypes
-    const sortedScores = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+    const sortedScores = Object.entries(scores).sort((a, b) => (b[1] as number) - (a[1] as number));
     const primaryArchetype = sortedScores[0][0];
     const secondaryArchetype = sortedScores[1][1] > 0 ? sortedScores[1][0] : null;
     
