@@ -83,10 +83,10 @@ export async function POST(request: NextRequest) {
     const scores = calculateScores(answers);
     
     // Get top two archetypes
-    const sortedScores = Object.entries(scores).sort((a, b) => (b[1] as number) - (a[1] as number));
-    const primaryArchetype = sortedScores[0][0];
-    const secondaryArchetype = sortedScores[1][1] > 0 ? sortedScores[1][0] : null;
-    
+const scoreEntries = Object.entries(scores);
+const sortedScores = scoreEntries.sort((a, b) => Number(b[1]) - Number(a[1]));
+const primaryArchetype = sortedScores[0][0];
+const secondaryArchetype = sortedScores[1] && Number(sortedScores[1][1]) > 0 ? sortedScores[1][0] : null;
     // Save to database
     const { data: response, error } = await supabase
       .from('responses')
