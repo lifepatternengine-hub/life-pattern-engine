@@ -27,7 +27,7 @@ export default function Home() {
           }}
         />
         
-        <div className="relative z-10 w-1/2 max-w-[700px] ml-auto pl-20 pr-12">
+        <div className="relative z-10 w-1/2 max-w-[700px] ml-auto pl-24 pr-16" style={{ color: '#ffffff' }}>
           <h1 className="text-7xl leading-[0.95] tracking-tight mb-8" style={{ color: '#ffffff' }}>
             You're not lost.<br />You're in a pattern.
           </h1>
@@ -38,14 +38,14 @@ export default function Home() {
             href="https://tally.so/r/vG2rO8"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block px-8 py-4 bg-white text-black font-medium hover:bg-gray-200 transition-colors"
+           className="inline-block px-8 py-4 bg-transparent border-2 border-gray-400 text-white font-medium hover:bg-white hover:text-black transition-colors"
           >
             Start the diagnostic
           </a>
         </div>
       </section>
 
-      <section className="py-32 px-8 bg-[#0f0a1a]">
+      <section className="py-32 px-8 bg-[#0f0a1a]" style={{ color: '#ffffff' }}>
         <div className="max-w-[1000px] mx-auto">
           <h2 className="text-5xl mb-12" style={{ color: '#ffffff' }}>About</h2>
           <div className="space-y-6 text-lg font-light leading-relaxed" style={{ color: '#d1d5db' }}>
@@ -65,7 +65,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-32 px-8 bg-gradient-to-b from-[#0f0a1a] to-[#0a0a0f]">
+      <section className="py-32 px-8 bg-gradient-to-b from-[#0f0a1a] to-[#0a0a0f]" style={{ color: '#ffffff' }}>
         <div className="max-w-[1000px] mx-auto">
           <h2 className="text-5xl text-white mb-12">How it works</h2>
           <div className="space-y-16">
