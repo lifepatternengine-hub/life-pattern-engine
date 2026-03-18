@@ -8,7 +8,7 @@ const supabase = createClient(
 );
 
 // Map Tally question keys to question numbers
-const QUESTION_KEY_MAP: Record<string, number> = {
+const QUESTION_KEY_MAP: Record<string, number | string> = {
   'question_0ERbYy': 1,
   'question_zK50AR': 2,
   'question_5dPlYo': 3,
