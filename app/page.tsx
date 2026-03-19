@@ -28,10 +28,10 @@ export default function Home() {
         />
         
         <div className="relative z-10 w-1/2 max-w-[800px] ml-auto pl-32 pr-20" style={{ color: '#ffffff' }}>
-         <h1 className="text-8xl leading-[1.1] tracking-tight mb-12" style={{ color: '#ffffff' }}>
+         <h1 className="text-8xl leading-[1.3] tracking-tight mb-16" style={{ color: '#ffffff' }}>
             You're not lost.<br />You're in a pattern.
           </h1>
-          <p className="text-2xl font-light leading-loose mb-12" style={{ color: '#d1d5db' }}>
+          <p className="text-2xl font-light mb-16" style={{ color: '#d1d5db', lineHeight: '2' }}>
             A diagnostic tool that maps your professional situation against 15 recognizable patterns experienced in midlife.
           </p>
           <a
@@ -45,10 +45,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-32 px-8 bg-[#0f0a1a]" style={{ color: '#ffffff' }}>
+      <section className="py-48 px-8 bg-[#0f0a1a]" style={{ color: '#ffffff' }}>
         <div className="max-w-[1000px] mx-auto">
           <h2 className="text-5xl mb-12" style={{ color: '#ffffff' }}>About</h2>
-          <div className="space-y-6 text-lg font-light leading-loose" style={{ color: '#d1d5db' }}>
+          <div className="space-y-10 text-lg font-light" style={{ color: '#d1d5db', lineHeight: '2.2' }}>
             <p>
               Feeling stuck or lost professionally is not unique — it follows patterns. The Life Pattern Engine is built on the observation that midlife professional transitions cluster around specific, recognizable configurations.
             </p>
@@ -65,28 +65,28 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-32 px-8 bg-gradient-to-b from-[#0f0a1a] to-[#0a0a0f]" style={{ color: '#ffffff' }}>
+      <section className="py-48 px-8 bg-gradient-to-b from-[#0f0a1a] to-[#0a0a0f]" style={{ color: '#ffffff' }}>
         <div className="max-w-[1000px] mx-auto">
           <h2 className="text-5xl text-white mb-12">How it works</h2>
-          <div className="space-y-16">
+          <div className="space-y-32">
             <div>
               <div className="text-6xl text-white/10 mb-4">01</div>
               <h3 className="text-3xl text-white mb-4">28 questions</h3>
-              <p className="text-lg text-gray-400 font-light leading-relaxed">
+             <p className="text-lg text-gray-400 font-light" style={{ lineHeight: '2' }}>
                 The diagnostic presents 28 carefully constructed questions designed to surface the underlying dynamics of your professional situation. Each question targets specific dimensions: value alignment, skill utilization, identity coherence, structural constraints, and future orientation.
               </p>
             </div>
             <div>
               <div className="text-6xl text-white/10 mb-4">02</div>
               <h3 className="text-3xl text-white mb-4">15 patterns</h3>
-              <p className="text-lg text-gray-400 font-light leading-relaxed">
+             <p className="text-lg text-gray-400 font-light" style={{ lineHeight: '2' }}>
                 Your responses are mapped against 15 distinct archetypes — each representing a coherent professional pattern. These aren't personality types. They're situational configurations: combinations of internal states and external circumstances that create recognizable trajectories.
               </p>
             </div>
             <div>
               <div className="text-6xl text-white/10 mb-4">03</div>
               <h3 className="text-3xl text-white mb-4">Your result</h3>
-              <p className="text-lg text-gray-400 font-light leading-relaxed">
+              <p className="text-lg text-gray-400 font-light" style={{ lineHeight: '2' }}>
                 You receive a detailed breakdown of your dominant pattern (or patterns, if you're in a hybrid state). The result page includes trajectory stories — real scenarios showing how others in the same pattern have navigated forward. Not advice. Just visibility.
               </p>
             </div>
