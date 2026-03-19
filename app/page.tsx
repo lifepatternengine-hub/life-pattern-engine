@@ -28,10 +28,10 @@ export default function Home() {
         />
         
         <div className="relative z-10 w-1/2 max-w-[800px] ml-auto pl-32 pr-20" style={{ color: '#ffffff' }}>
-          <h1 className="text-7xl leading-[0.95] tracking-tight mb-8" style={{ color: '#ffffff' }}>
+          <h1 className="text-8xl leading-[0.9] tracking-tight mb-12" style={{ color: '#ffffff' }}>
             You're not lost.<br />You're in a pattern.
           </h1>
-          <p className="text-xl font-light leading-relaxed mb-8" style={{ color: '#d1d5db' }}>
+          <p className="text-2xl font-light leading-relaxed mb-12" style={{ color: '#d1d5db' }}>
             A diagnostic tool that maps your professional situation against 15 recognizable patterns experienced in midlife.
           </p>
           <a
