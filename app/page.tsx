@@ -28,17 +28,17 @@ export default function Home() {
         />
         
         <div className="relative z-10 w-1/2 max-w-[800px] ml-auto pl-32 pr-20" style={{ color: '#ffffff' }}>
-          <h1 className="text-8xl leading-[0.9] tracking-tight mb-12" style={{ color: '#ffffff' }}>
+          <h1 className="text-8xl leading-[1.1] tracking-tight mb-12" style={{ color: '#ffffff' }}>
             You're not lost.<br />You're in a pattern.
           </h1>
-          <p className="text-2xl font-light leading-relaxed mb-12" style={{ color: '#d1d5db' }}>
+          <p className="text-2xl font-light leading-loose mb-12" style={{ color: '#d1d5db' }}>
             A diagnostic tool that maps your professional situation against 15 recognizable patterns experienced in midlife.
           </p>
           <a
             href="https://tally.so/r/vG2rO8"
   target="_blank"
   rel="noopener noreferrer"
-  className="inline-block px-8 py-4 bg-transparent border-2 border-gray-400 text-white font-medium hover:bg-white hover:text-black transition-colors"
+  className="inline-block px-8 py-4 bg-gray-300 text-black font-medium hover:bg-gray-400 transition-colors"
 >
   Start the diagnostic
 </a>
@@ -48,7 +48,7 @@ export default function Home() {
       <section className="py-32 px-8 bg-[#0f0a1a]" style={{ color: '#ffffff' }}>
         <div className="max-w-[1000px] mx-auto">
           <h2 className="text-5xl mb-12" style={{ color: '#ffffff' }}>About</h2>
-          <div className="space-y-6 text-lg font-light leading-relaxed" style={{ color: '#d1d5db' }}>
+          <div className="space-y-6 text-lg font-light leading-loose" style={{ color: '#d1d5db' }}>
             <p>
               Feeling stuck or lost professionally is not unique — it follows patterns. The Life Pattern Engine is built on the observation that midlife professional transitions cluster around specific, recognizable configurations.
             </p>
