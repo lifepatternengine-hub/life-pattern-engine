@@ -45,7 +45,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="pt-196 pb-96 px-8 bg-[#0f0a1a]" style={{ color: '#ffffff' }}>
+      <section className="pt-96 pb-96 px-8 bg-[#0f0a1a]" style={{ color: '#ffffff' }}>
         <div className="max-w-[1000px] mx-auto">
           <h2 className="text-5xl mb-12" style={{ color: '#ffffff' }}>About</h2>
           <div className="space-y-10 text-lg font-light" style={{ color: '#d1d5db', lineHeight: '2.2' }}>
@@ -65,7 +65,7 @@ export default function Home() {
         </div>
       </section>
 
-     <section className="pt-196 pb-96 px-8 bg-gradient-to-b from-[#0f0a1a] to-[#0a0a0f]" style={{ color: '#ffffff' }}>
+     <section className="pt-96 pb-96 px-8 bg-gradient-to-b from-[#0f0a1a] to-[#0a0a0f]" style={{ color: '#ffffff' }}>
   <div className="max-w-[1000px] mx-auto">
     <h2 className="text-5xl text-white mb-20">How it works</h2>
     <div className="space-y-32">
