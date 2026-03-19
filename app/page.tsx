@@ -65,34 +65,34 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-64 px-8 bg-gradient-to-b from-[#0f0a1a] to-[#0a0a0f]" style={{ color: '#ffffff' }}>
-          <h2 className="text-5xl text-white mb-20">How it works</h2>
-          <div className="space-y-32">
-            <div>
-              <div className="text-6xl text-white/10 mb-4">01</div>
-              <h3 className="text-3xl text-white mb-4">28 questions</h3>
-             <p className="text-lg text-gray-400 font-light" style={{ lineHeight: '2' }}>
-                The diagnostic presents 28 carefully constructed questions designed to surface the underlying dynamics of your professional situation. Each question targets specific dimensions: value alignment, skill utilization, identity coherence, structural constraints, and future orientation.
-              </p>
-            </div>
-            <div>
-              <div className="text-6xl text-white/10 mb-4">02</div>
-              <h3 className="text-3xl text-white mb-4">15 patterns</h3>
-             <p className="text-lg text-gray-400 font-light" style={{ lineHeight: '2' }}>
-                Your responses are mapped against 15 distinct archetypes — each representing a coherent professional pattern. These aren't personality types. They're situational configurations: combinations of internal states and external circumstances that create recognizable trajectories.
-              </p>
-            </div>
-            <div>
-              <div className="text-6xl text-white/10 mb-4">03</div>
-              <h3 className="text-3xl text-white mb-4">Your result</h3>
-              <p className="text-lg text-gray-400 font-light" style={{ lineHeight: '2' }}>
-                You receive a detailed breakdown of your dominant pattern (or patterns, if you're in a hybrid state). The result page includes trajectory stories — real scenarios showing how others in the same pattern have navigated forward. Not advice. Just visibility.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
+     <section className="py-64 px-8 bg-gradient-to-b from-[#0f0a1a] to-[#0a0a0f]" style={{ color: '#ffffff' }}>
+  <div className="max-w-[1000px] mx-auto">
+    <h2 className="text-5xl text-white mb-20">How it works</h2>
+    <div className="space-y-32">
+      <div>
+        <div className="text-6xl text-white/10 mb-4">01</div>
+        <h3 className="text-3xl text-white mb-4">28 questions</h3>
+        <p className="text-lg text-gray-400 font-light" style={{ lineHeight: '2' }}>
+          The diagnostic presents 28 carefully constructed questions designed to surface the underlying dynamics of your professional situation. Each question targets specific dimensions: value alignment, skill utilization, identity coherence, structural constraints, and future orientation.
+        </p>
+      </div>
+      <div>
+        <div className="text-6xl text-white/10 mb-4">02</div>
+        <h3 className="text-3xl text-white mb-4">15 patterns</h3>
+        <p className="text-lg text-gray-400 font-light" style={{ lineHeight: '2' }}>
+          Your responses are mapped against 15 distinct archetypes — each representing a coherent professional pattern. These aren't personality types. They're situational configurations: combinations of internal states and external circumstances that create recognizable trajectories.
+        </p>
+      </div>
+      <div>
+        <div className="text-6xl text-white/10 mb-4">03</div>
+        <h3 className="text-3xl text-white mb-4">Your result</h3>
+        <p className="text-lg text-gray-400 font-light" style={{ lineHeight: '2' }}>
+          You receive a detailed breakdown of your dominant pattern (or patterns, if you're in a hybrid state). The result page includes trajectory stories — real scenarios showing how others in the same pattern have navigated forward. Not advice. Just visibility.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
       <footer className="py-12 px-8 border-t border-white/10">
         <div className="max-w-[1400px] mx-auto flex justify-between items-center text-sm text-gray-500">
           <div>Life Pattern Engine</div>
