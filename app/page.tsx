@@ -45,7 +45,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-64 px-8 bg-[#0f0a1a]" style={{ color: '#ffffff' }}>
+      <section className="pt-196 pb-96 px-8 bg-[#0f0a1a]" style={{ color: '#ffffff' }}>
         <div className="max-w-[1000px] mx-auto">
           <h2 className="text-5xl mb-12" style={{ color: '#ffffff' }}>About</h2>
           <div className="space-y-10 text-lg font-light" style={{ color: '#d1d5db', lineHeight: '2.2' }}>
@@ -65,7 +65,7 @@ export default function Home() {
         </div>
       </section>
 
-     <section className="py-64 px-8 bg-gradient-to-b from-[#0f0a1a] to-[#0a0a0f]" style={{ color: '#ffffff' }}>
+     <section className="pt-196 pb-96 px-8 bg-gradient-to-b from-[#0f0a1a] to-[#0a0a0f]" style={{ color: '#ffffff' }}>
   <div className="max-w-[1000px] mx-auto">
     <h2 className="text-5xl text-white mb-20">How it works</h2>
     <div className="space-y-32">
@@ -93,7 +93,7 @@ export default function Home() {
     </div>
   </div>
 </section>
-      <footer className="py-12 px-8 border-t border-white/10">
+      <footer className="pt-64 pb-12 px-8 border-t border-white/10">
         <div className="max-w-[1400px] mx-auto flex justify-between items-center text-sm text-gray-500">
           <div>Life Pattern Engine</div>
           <div>— Zdnk</div>
