@@ -36,12 +36,12 @@ export default function Home() {
           </p>
           <a
             href="https://tally.so/r/vG2rO8"
-            target="_blank"
-            rel="noopener noreferrer"
-           lassName="inline-block px-8 py-4 bg-transparent border-2 border-gray-400 text-white font-medium hover:bg-white hover:text-black transition-colors"
-          >
-            Start the diagnostic
-          </a>
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-block px-8 py-4 bg-transparent border-2 border-gray-400 text-white font-medium hover:bg-white hover:text-black transition-colors"
+>
+  Start the diagnostic
+</a>
         </div>
       </section>
 
