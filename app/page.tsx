@@ -27,7 +27,7 @@ export default function Home() {
           }}
         />
         
-        <div className="relative z-10 w-1/2 max-w-[800px] ml-auto pl-32 pr-20" style={{ color: '#ffffff' }}>
+        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-8 pt-40 pb-24">
          <h1 className="text-8xl leading-[1.3] tracking-tight mb-16" style={{ color: '#ffffff' }}>
             You're not lost.<br />You're in a pattern.
           </h1>
@@ -45,7 +45,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-48 px-8 bg-[#0f0a1a]" style={{ color: '#ffffff' }}>
+      <section className="py-64 px-8 bg-[#0f0a1a]" style={{ color: '#ffffff' }}>
         <div className="max-w-[1000px] mx-auto">
           <h2 className="text-5xl mb-12" style={{ color: '#ffffff' }}>About</h2>
           <div className="space-y-10 text-lg font-light" style={{ color: '#d1d5db', lineHeight: '2.2' }}>
@@ -65,9 +65,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-48 px-8 bg-gradient-to-b from-[#0f0a1a] to-[#0a0a0f]" style={{ color: '#ffffff' }}>
-        <div className="max-w-[1000px] mx-auto">
-          <h2 className="text-5xl text-white mb-12">How it works</h2>
+      <section className="py-64 px-8 bg-gradient-to-b from-[#0f0a1a] to-[#0a0a0f]" style={{ color: '#ffffff' }}>
+          <h2 className="text-5xl text-white mb-20">How it works</h2>
           <div className="space-y-32">
             <div>
               <div className="text-6xl text-white/10 mb-4">01</div>
