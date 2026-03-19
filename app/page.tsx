@@ -45,7 +45,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="pt-[475px] pb-96 px-8 bg-[#0f0a1a]" style={{ color: '#ffffff' }}>
+      <section className="pt-[200px] pb-96 px-8 bg-[#0f0a1a]" style={{ color: '#ffffff' }}>
         <div className="max-w-[1000px] mx-auto">
           <h2 className="text-5xl mb-12" style={{ color: '#ffffff' }}>About</h2>
           <div className="space-y-10 text-lg font-light" style={{ color: '#d1d5db', lineHeight: '2.2' }}>
