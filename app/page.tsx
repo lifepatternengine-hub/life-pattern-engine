@@ -12,7 +12,7 @@ export default function Home() {
       `}</style>
 
       <section className="relative min-h-screen flex items-center px-4 md:px-8 py-12 md:py-24 overflow-hidden">
-        <div className="absolute top-0 bottom-0 left-0 w-1/2 overflow-hidden hidden md:block">
+        <div className="hidden md:block absolute top-0 bottom-0 left-0 w-1/2 overflow-hidden">
           <img 
             src="/mosaic.png" 
             alt="" 
@@ -52,7 +52,7 @@ export default function Home() {
       </section>
 
       <section className="px-6 md:px-8 bg-[#0f0a1a]" style={{ paddingTop: '6rem', paddingBottom: '24rem', color: '#ffffff' }}>
-        <div className="max-w-[1000px] mx-auto" style={{ paddingTop: '250px' }}>
+        <div className="max-w-[1000px] mx-auto">
           <h2 className="text-3xl md:text-5xl mb-12 md:mb-16" style={{ color: '#ffffff' }}>About</h2>
           <div className="space-y-8 md:space-y-20 text-base md:text-lg font-light" style={{ color: '#d1d5db', lineHeight: '2.2' }}>
             <p>
@@ -73,23 +73,23 @@ export default function Home() {
 
       <section className="pt-24 md:pt-96 pb-24 md:pb-96 px-6 md:px-8 bg-gradient-to-b from-[#0f0a1a] to-[#0a0a0f]" style={{ color: '#ffffff' }}>
         <div className="max-w-[1000px] mx-auto">
-          <h2 className="text-3xl md:text-5xl text-white mb-12 md:mb-16" style={{ marginTop: '100px' }}>How it works</h2>
+          <h2 className="text-3xl md:text-5xl text-white mt-12 md:mt-[100px] mb-12 md:mb-16">How it works</h2>
           <div className="space-y-12">
-            <div style={{ marginBottom: '60px' }}>
+            <div style={{ marginBottom: '60px' }} className="md:mb-[100px]">
               <div className="text-4xl md:text-6xl text-white/10 mb-4">01</div>
               <h3 className="text-2xl md:text-3xl text-white mb-4">28 questions</h3>
               <p className="text-base md:text-lg text-gray-400 font-light" style={{ lineHeight: '2' }}>
                 The diagnostic presents 28 carefully constructed questions designed to surface the underlying dynamics of your professional situation. Each question targets specific dimensions: value alignment, skill utilization, identity coherence, structural constraints, and future orientation.
               </p>
             </div>
-            <div style={{ marginBottom: '60px' }}>
+            <div style={{ marginBottom: '60px' }} className="md:mb-[100px]">
               <div className="text-4xl md:text-6xl text-white/10 mb-4">02</div>
               <h3 className="text-2xl md:text-3xl text-white mb-4">15 patterns</h3>
               <p className="text-base md:text-lg text-gray-400 font-light" style={{ lineHeight: '2' }}>
                 Your responses are mapped against 15 distinct archetypes — each representing a coherent professional pattern. These aren't personality types. They're situational configurations: combinations of internal states and external circumstances that create recognizable trajectories.
               </p>
             </div>
-            <div style={{ marginBottom: '200px' }}>
+            <div style={{ marginBottom: '100px' }} className="md:mb-[300px]">
               <div className="text-4xl md:text-6xl text-white/10 mb-4">03</div>
               <h3 className="text-2xl md:text-3xl text-white mb-4">Your result</h3>
               <p className="text-base md:text-lg text-gray-400 font-light" style={{ lineHeight: '2' }}>
