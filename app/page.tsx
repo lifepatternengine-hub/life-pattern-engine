@@ -94,11 +94,11 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="pt-32 pb-12 px-8 border-t border-white/10">
+      <footer className="pt-32 pb-12 px-8 border-t border-white/10 bg-[#0a0a0f]">
         <div className="max-w-[1400px] mx-auto">
           <div className="flex justify-between items-center text-sm text-gray-500 mb-8">
           </div>
-          <div className="text-center text-sm text-white">
+          <div className="text-center text-sm" style={{ color: '#ffffff' }}>
             © Copyright: Life Pattern Engine 2026 - All Rights Reserved
           </div>
         </div>
