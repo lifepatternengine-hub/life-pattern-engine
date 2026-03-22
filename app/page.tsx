@@ -67,7 +67,7 @@ export default function Home() {
 
       <section className="pt-96 pb-96 px-8 bg-gradient-to-b from-[#0f0a1a] to-[#0a0a0f]" style={{ color: '#ffffff' }}>
         <div className="max-w-[1000px] mx-auto">
-          <h2 className="text-5xl text-white mb-[125px]">How it works</h2>
+          <h2 className="text-5xl text-white mt-[100px] mb-[125px]">How it works</h2>
           <div className="space-y-32">
             <div style={{ marginBottom: '100px' }}>
               <div className="text-6xl text-white/10 mb-4">01</div>
