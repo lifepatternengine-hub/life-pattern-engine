@@ -16,7 +16,8 @@ export default function Home() {
           <img 
             src="/mosaic.jpg" 
             alt="" 
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover"
+            style={{ objectPosition: 'center center' }}
           />
         </div>
         
@@ -51,7 +52,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-6 md:px-8 bg-[#0f0a1a]" style={{ paddingTop: '6rem', paddingBottom: '24rem', color: '#ffffff' }}>
+      <section className="px-6 md:px-8 bg-[#0f0a1a]" style={{ paddingTop: '6rem', paddingBottom: '6rem', color: '#ffffff' }}>
         <div className="max-w-[1000px] mx-auto">
           <h2 className="text-3xl md:text-5xl mb-12 md:mb-16" style={{ color: '#ffffff' }}>About</h2>
           <div className="space-y-8 md:space-y-20 text-base md:text-lg font-light" style={{ color: '#d1d5db', lineHeight: '2.2' }}>
