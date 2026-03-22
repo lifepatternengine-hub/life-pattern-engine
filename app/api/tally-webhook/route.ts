@@ -49,9 +49,7 @@ export async function POST(request: NextRequest) {
     
     console.log('Received Tally webhook:', JSON.stringify(payload, null, 2));
     
-    // Get Tally's response ID
     const tallyResponseId = payload.data.responseId;
-    
     const fields = payload.data.fields;
     let email = '';
     const answers: Record<string, any> = {};
@@ -84,7 +82,6 @@ export async function POST(request: NextRequest) {
     const primaryArchetype = sortedScores[0][0];
     const secondaryArchetype = sortedScores[1] && Number(sortedScores[1][1]) > 0 ? sortedScores[1][0] : null;
     
-    // Save using Tally's response ID as our ID
     const { error } = await supabase
       .from('responses')
       .insert({
@@ -105,7 +102,10 @@ export async function POST(request: NextRequest) {
     
     console.log('Saved response with ID:', tallyResponseId);
     
-    return NextResponse.json({ success: true }, { status: 200 });
+    // Return 302 redirect
+    const redirectUrl = `https://life-pattern-engine.vercel.app/result/${tallyResponseId}`;
+    
+    return NextResponse.redirect(redirectUrl, 302);
     
   } catch (error) {
     console.error('Webhook error:', error);
