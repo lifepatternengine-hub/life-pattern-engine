@@ -27,28 +27,42 @@ export default function ResultPage({ params }: { params: Promise<{ id: string }>
   const { id } = React.use(params);
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function loadResult() {
-      const supabase = createClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-      );
-      
-      const { data, error } = await supabase
-        .from('responses')
-        .select('*')
-        .eq('id', id)
-        .single();
+      try {
+        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+        const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-      if (error) {
-        console.error('Error loading result:', error);
+        if (!supabaseUrl || !supabaseKey) {
+          setError('Configuration error');
+          setLoading(false);
+          return;
+        }
+
+        const supabase = createClient(supabaseUrl, supabaseKey);
+        
+        const { data, error } = await supabase
+          .from('responses')
+          .select('*')
+          .eq('id', id)
+          .single();
+
+        if (error) {
+          console.error('Error loading result:', error);
+          setError('Could not load result');
+          setLoading(false);
+          return;
+        }
+
+        setResult(data);
         setLoading(false);
-        return;
+      } catch (err) {
+        console.error('Unexpected error:', err);
+        setError('An error occurred');
+        setLoading(false);
       }
-
-      setResult(data);
-      setLoading(false);
     }
 
     loadResult();
@@ -58,17 +72,20 @@ export default function ResultPage({ params }: { params: Promise<{ id: string }>
     return (
       <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center">
         <div className="text-center">
-          <div className="text-2xl font-light text-gray-400">Loading your result...</div>
+          <div className="text-2xl font-light" style={{ color: '#9ca3af' }}>Loading your result...</div>
         </div>
       </div>
     );
   }
 
-  if (!result) {
+  if (error || !result) {
     return (
       <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center">
         <div className="text-center">
-          <div className="text-2xl font-light text-gray-400">Result not found</div>
+          <div className="text-2xl font-light" style={{ color: '#9ca3af' }}>{error || 'Result not found'}</div>
+          <a href="/" className="mt-4 inline-block font-light" style={{ color: '#9ca3af' }}>
+            ← Back to home
+          </a>
         </div>
       </div>
     );
@@ -83,19 +100,20 @@ export default function ResultPage({ params }: { params: Promise<{ id: string }>
     <div className="min-h-screen bg-[#0a0a0f] py-16 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="bg-[#0f0a1a] p-12 border border-white/10">
-          <h1 className="text-5xl font-light text-white mb-4">Your pattern</h1>
+          <h1 className="text-5xl font-light mb-4" style={{ color: '#ffffff' }}>Your pattern</h1>
           
           <div className="space-y-8">
             <div>
-              <div className="text-sm font-light text-gray-400 mb-2">PRIMARY ARCHETYPE</div>
-              <div className="text-4xl font-light text-white mb-4">
+              <div className="text-sm font-light mb-2" style={{ color: '#9ca3af' }}>PRIMARY ARCHETYPE</div>
+              <div className="text-4xl font-light mb-4" style={{ color: '#ffffff' }}>
                 {primaryCode} — {primaryName}
               </div>
               <a
                 href={archetypeLinks[primaryCode]}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-6 py-3 bg-white text-black font-medium hover:bg-gray-200 transition-colors"
+                className="inline-block px-6 py-3 font-medium transition-colors"
+                style={{ backgroundColor: '#ffffff', color: '#000000' }}
               >
                 View full result →
               </a>
@@ -103,15 +121,16 @@ export default function ResultPage({ params }: { params: Promise<{ id: string }>
 
             {secondaryCode && secondaryName && (
               <div className="pt-8 border-t border-white/10">
-                <div className="text-sm font-light text-gray-400 mb-2">SECONDARY ARCHETYPE</div>
-                <div className="text-2xl font-light text-white mb-4">
+                <div className="text-sm font-light mb-2" style={{ color: '#9ca3af' }}>SECONDARY ARCHETYPE</div>
+                <div className="text-2xl font-light mb-4" style={{ color: '#ffffff' }}>
                   {secondaryCode} — {secondaryName}
                 </div>
                 <a
                   href={archetypeLinks[secondaryCode]}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block px-6 py-3 bg-white/10 text-white font-medium hover:bg-white/20 transition-colors border border-white/20"
+                  className="inline-block px-6 py-3 font-medium transition-colors border border-white/20"
+                  style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', color: '#ffffff' }}
                 >
                   View secondary pattern →
                 </a>
@@ -119,12 +138,12 @@ export default function ResultPage({ params }: { params: Promise<{ id: string }>
             )}
 
             <div className="pt-8 border-t border-white/10 space-y-4">
-              <h2 className="text-2xl font-light text-white">What this means</h2>
-              <p className="text-gray-300 font-light leading-relaxed">
+              <h2 className="text-2xl font-light" style={{ color: '#ffffff' }}>What this means</h2>
+              <p className="font-light leading-relaxed" style={{ color: '#d1d5db' }}>
                 Your responses indicate you're primarily in the <strong>{primaryName}</strong> pattern.
                 {secondaryCode && ` You also show characteristics of ${secondaryName}.`}
               </p>
-              <p className="text-gray-300 font-light leading-relaxed">
+              <p className="font-light leading-relaxed" style={{ color: '#d1d5db' }}>
                 The full result page includes a detailed breakdown of your pattern, trajectory stories showing how others in the same pattern have navigated forward, and specific dynamics to pay attention to.
               </p>
             </div>
@@ -132,7 +151,7 @@ export default function ResultPage({ params }: { params: Promise<{ id: string }>
         </div>
 
         <div className="mt-8 text-center">
-          <a href="/" className="text-gray-400 hover:text-white font-light">
+          <a href="/" className="font-light" style={{ color: '#9ca3af' }}>
             ← Back to home
           </a>
         </div>
