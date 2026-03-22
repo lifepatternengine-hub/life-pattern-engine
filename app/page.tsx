@@ -47,7 +47,7 @@ export default function Home() {
 
       <section className="pt-[250px] pb-96 px-8 bg-[#0f0a1a]" style={{ color: '#ffffff' }}>
         <div className="max-w-[1000px] mx-auto">
-          <h2 className="text-5xl mt-[100px] mb-16" style={{ color: '#ffffff' }}>About</h2>
+          <h2 className="text-5xl mb-16" style={{ color: '#ffffff' }}>About</h2>
           <div className="space-y-20 text-lg font-light" style={{ color: '#d1d5db', lineHeight: '2.2' }}>
             <p>
               Feeling stuck or lost professionally is not unique — it follows patterns. The Life Pattern Engine is built on the observation that midlife professional transitions cluster around specific, recognizable configurations.
