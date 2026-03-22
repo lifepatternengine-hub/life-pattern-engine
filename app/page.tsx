@@ -14,9 +14,9 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center justify-center px-4 md:px-8 py-12 md:py-24 overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src="/mosaic-horizontal.jpg" 
+            src="/mosaic.jpg" 
             alt="" 
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
           />
         </div>
         
@@ -71,9 +71,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="pt-24 md:pt-96 pb-24 md:pb-96 px-6 md:px-8 bg-gradient-to-b from-[#0f0a1a] to-[#0a0a0f]" style={{ color: '#ffffff' }}>
+      <section className="pt-6 md:pt-24 pb-24 md:pb-96 px-6 md:px-8 bg-gradient-to-b from-[#0f0a1a] to-[#0a0a0f]" style={{ color: '#ffffff' }}>
         <div className="max-w-[1000px] mx-auto">
-          <h2 className="text-3xl md:text-5xl text-white mt-4 md:mt-8 mb-12 md:mb-16">How it works</h2>
+          <h2 className="text-3xl md:text-5xl text-white mb-12 md:mb-16">How it works</h2>
           <div className="space-y-12">
             <div style={{ marginBottom: '60px' }} className="md:mb-[100px]">
               <div className="text-4xl md:text-6xl text-white/10 mb-4">01</div>
