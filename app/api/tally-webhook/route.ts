@@ -2,11 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { calculateScores } from '@/lib/scoring';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_ANON_KEY!
-);
-
 // Map Tally question keys to question numbers
 const QUESTION_KEY_MAP: Record<string, number | string> = {
   'question_0ERbYy': 1,
@@ -42,6 +37,17 @@ const QUESTION_KEY_MAP: Record<string, number | string> = {
 
 export async function POST(request: NextRequest) {
   try {
+    // Create Supabase client inside the function
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseKey = process.env.SUPABASE_ANON_KEY;
+
+    if (!supabaseUrl || !supabaseKey) {
+      console.error('Missing Supabase environment variables');
+      return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
+    }
+
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
     const payload = await request.json();
     
     console.log('Received Tally webhook:', JSON.stringify(payload, null, 2));
@@ -83,10 +89,11 @@ export async function POST(request: NextRequest) {
     const scores = calculateScores(answers);
     
     // Get top two archetypes
-const scoreEntries = Object.entries(scores);
-const sortedScores = scoreEntries.sort((a, b) => Number(b[1]) - Number(a[1]));
-const primaryArchetype = sortedScores[0][0];
-const secondaryArchetype = sortedScores[1] && Number(sortedScores[1][1]) > 0 ? sortedScores[1][0] : null;
+    const scoreEntries = Object.entries(scores);
+    const sortedScores = scoreEntries.sort((a, b) => Number(b[1]) - Number(a[1]));
+    const primaryArchetype = sortedScores[0][0];
+    const secondaryArchetype = sortedScores[1] && Number(sortedScores[1][1]) > 0 ? sortedScores[1][0] : null;
+    
     // Save to database
     const { data: response, error } = await supabase
       .from('responses')
