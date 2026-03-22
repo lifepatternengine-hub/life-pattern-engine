@@ -46,15 +46,17 @@ function ResultContent() {
 
       const supabase = createClient(supabaseUrl, supabaseKey);
       
-      const { data } = await supabase
-        .from('responses')
-        .select('*')
-        .eq('email', email)
-        .order('created_at', { ascending: false })
-        .limit(1)
-        .single();
+      const { data, error } = await supabase
+  .from('responses')
+  .select('*')
+  .eq('email', email)
+  .order('created_at', { ascending: false })
+  .limit(1);
 
-      setResult(data);
+console.log('Query result:', data, error);
+const result = data?.[0];
+
+      setResult(result);
       setLoading(false);
     }
 
