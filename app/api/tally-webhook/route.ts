@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { calculateScores } from '@/lib/scoring';
 
-// Map Tally question keys to question numbers
 const QUESTION_KEY_MAP: Record<string, number | string> = {
   'question_0ERbYy': 1,
   'question_zK50AR': 2,
@@ -32,12 +31,11 @@ const QUESTION_KEY_MAP: Record<string, number | string> = {
   'question_EP7BVX': 26,
   'question_rlM09l': 27,
   'question_42V10k': 28,
-  'question_jBA04x': 'email', // Email field
+  'question_jBA04x': 'email',
 };
 
 export async function POST(request: NextRequest) {
   try {
-    // Create Supabase client inside the function
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const supabaseKey = process.env.SUPABASE_ANON_KEY;
 
@@ -47,26 +45,24 @@ export async function POST(request: NextRequest) {
     }
 
     const supabase = createClient(supabaseUrl, supabaseKey);
-
     const payload = await request.json();
     
     console.log('Received Tally webhook:', JSON.stringify(payload, null, 2));
     
-    // Extract email and answers from Tally payload
+    // Get Tally's response ID
+    const tallyResponseId = payload.data.responseId;
+    
     const fields = payload.data.fields;
     let email = '';
     const answers: Record<string, any> = {};
     
-    // Process each field
     fields.forEach((field: any) => {
       const mappedKey = QUESTION_KEY_MAP[field.key];
       
       if (mappedKey === 'email') {
         email = field.value;
       } else if (typeof mappedKey === 'number') {
-        // Store the answer - handle different field types
         if (field.type === 'MULTIPLE_CHOICE' && Array.isArray(field.value)) {
-          // Get the selected option ID
           answers[`question_${mappedKey}`] = field.value[0];
         } else if (field.type === 'LINEAR_SCALE') {
           answers[`question_${mappedKey}`] = field.value;
@@ -79,25 +75,20 @@ export async function POST(request: NextRequest) {
     });
     
     if (!email) {
-      return NextResponse.json(
-        { error: 'Email is required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Email is required' }, { status: 400 });
     }
     
-    // Calculate scores
     const scores = calculateScores(answers);
-    
-    // Get top two archetypes
     const scoreEntries = Object.entries(scores);
     const sortedScores = scoreEntries.sort((a, b) => Number(b[1]) - Number(a[1]));
     const primaryArchetype = sortedScores[0][0];
     const secondaryArchetype = sortedScores[1] && Number(sortedScores[1][1]) > 0 ? sortedScores[1][0] : null;
     
-    // Save to database
-    const { data: response, error } = await supabase
+    // Save using Tally's response ID as our ID
+    const { error } = await supabase
       .from('responses')
       .insert({
+        id: tallyResponseId,
         email,
         answers,
         scores,
@@ -109,36 +100,15 @@ export async function POST(request: NextRequest) {
     
     if (error) {
       console.error('Supabase error:', error);
-      return NextResponse.json(
-        { error: 'Database error' },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: 'Database error' }, { status: 500 });
     }
     
-    // Return redirect URL for Tally to follow
-    const redirectUrl = `${request.nextUrl.origin}/result/${response.id}`;
+    console.log('Saved response with ID:', tallyResponseId);
     
-    console.log('Redirecting to:', redirectUrl);
-    
-    // Tally will follow this redirect
-    return NextResponse.json(
-      { 
-        success: true,
-        redirect: redirectUrl
-      },
-      { 
-        status: 200,
-        headers: {
-          'Location': redirectUrl
-        }
-      }
-    );
+    return NextResponse.json({ success: true }, { status: 200 });
     
   } catch (error) {
     console.error('Webhook error:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
