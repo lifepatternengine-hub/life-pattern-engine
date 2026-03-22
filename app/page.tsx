@@ -38,7 +38,13 @@ export default function Home() {
             href="https://tally.so/r/vG2rO8"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block px-8 py-4 bg-gray-300 text-black font-medium hover:bg-gray-400 transition-colors"
+            className="inline-block font-medium transition-colors"
+            style={{
+            padding: '1rem 2rem',
+            backgroundColor: '#d1d5db',
+            color: '#000000',
+            textDecoration: 'none'
+  }}
           >
             Start the diagnostic
           </a>
