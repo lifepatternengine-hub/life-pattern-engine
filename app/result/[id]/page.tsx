@@ -33,13 +33,13 @@ export default function ResultPage({ params }: { params: Promise<{ id: string }>
     async function loadResult() {
       try {
         const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-        const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-        if (!supabaseUrl || !supabaseKey) {
-          setError('Configuration error');
-          setLoading(false);
-          return;
-        }
+if (!supabaseUrl || !supabaseKey) {
+  setError('Configuration error');
+  setLoading(false);
+  return;
+}
 
         const supabase = createClient(supabaseUrl, supabaseKey);
         
