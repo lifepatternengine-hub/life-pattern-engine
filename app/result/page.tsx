@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { createClient } from '@supabase/supabase-js';
 import { archetypeNames } from '@/lib/scoring';
@@ -23,7 +23,7 @@ const archetypeLinks: Record<string, string> = {
   LRP: 'https://subdued-castanet-545.notion.site/LRP-Late-Reinvention-Path-324a21b2a01b8087803afa0de4b32df1'
 };
 
-export default function ResultPage() {
+function ResultContent() {
   const searchParams = useSearchParams();
   const email = searchParams.get('email');
   const [result, setResult] = useState<any>(null);
@@ -126,5 +126,17 @@ export default function ResultPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ResultPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center">
+        <div className="text-2xl font-light" style={{ color: '#9ca3af' }}>Loading...</div>
+      </div>
+    }>
+      <ResultContent />
+    </Suspense>
   );
 }
