@@ -94,14 +94,14 @@ export default function ResultPage() {
               <div className="text-4xl font-light mb-4" style={{ color: '#ffffff' }}>
                 {primaryCode} — {primaryName}
               </div>
-              
+              <a
                 href={archetypeLinks[primaryCode]}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block px-6 py-3 font-medium"
                 style={{ backgroundColor: '#ffffff', color: '#000000' }}
               >
-                View full result →
+                View full result &rarr;
               </a>
             </div>
 
@@ -111,14 +111,14 @@ export default function ResultPage() {
                 <div className="text-2xl font-light mb-4" style={{ color: '#ffffff' }}>
                   {secondaryCode} — {secondaryName}
                 </div>
-                
+                <a
                   href={archetypeLinks[secondaryCode]}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block px-6 py-3 font-medium border border-white/20"
                   style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', color: '#ffffff' }}
                 >
-                  View secondary pattern →
+                  View secondary pattern &rarr;
                 </a>
               </div>
             )}
