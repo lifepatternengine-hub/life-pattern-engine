@@ -11,23 +11,23 @@ export default function Home() {
         }
       `}</style>
 
-      <section className="relative min-h-screen flex items-center px-4 md:px-8 py-12 md:py-24 overflow-hidden">
-        <div className="hidden md:block absolute top-0 bottom-0 left-0 w-1/2 overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center px-4 md:px-8 py-12 md:py-24 overflow-hidden">
+        <div className="absolute inset-0">
           <img 
-            src="/mosaic.png" 
+            src="/mosaic-horizontal.jpg" 
             alt="" 
             className="w-full h-full object-cover"
           />
         </div>
         
         <div 
-          className="absolute inset-0 md:top-0 md:bottom-0 md:right-0 md:left-auto md:w-1/2"
+          className="absolute inset-0"
           style={{
-            background: 'linear-gradient(135deg, #1a0a1f 0%, #0a0a0f 50%, #0f0a1a 100%)'
+            background: 'linear-gradient(135deg, rgba(26, 10, 31, 0.85) 0%, rgba(10, 10, 15, 0.85) 50%, rgba(15, 10, 26, 0.85) 100%)'
           }}
         />
         
-        <div className="relative z-10 w-full md:w-1/2 max-w-[650px] mx-auto md:ml-auto px-6 md:pl-[125px] md:pr-16 pt-12 md:pt-24 text-center md:text-left" style={{ color: '#ffffff' }}>
+        <div className="relative z-10 max-w-[800px] mx-auto text-center px-6" style={{ color: '#ffffff' }}>
           <h1 className="text-5xl md:text-8xl leading-[1.3] tracking-tight mb-8 md:mb-16" style={{ color: '#ffffff' }}>
             You're not lost.<br />You're in a pattern.
           </h1>
@@ -73,7 +73,7 @@ export default function Home() {
 
       <section className="pt-24 md:pt-96 pb-24 md:pb-96 px-6 md:px-8 bg-gradient-to-b from-[#0f0a1a] to-[#0a0a0f]" style={{ color: '#ffffff' }}>
         <div className="max-w-[1000px] mx-auto">
-          <h2 className="text-3xl md:text-5xl text-white mt-12 md:mt-[100px] mb-12 md:mb-16">How it works</h2>
+          <h2 className="text-3xl md:text-5xl text-white mt-4 md:mt-8 mb-12 md:mb-16">How it works</h2>
           <div className="space-y-12">
             <div style={{ marginBottom: '60px' }} className="md:mb-[100px]">
               <div className="text-4xl md:text-6xl text-white/10 mb-4">01</div>
