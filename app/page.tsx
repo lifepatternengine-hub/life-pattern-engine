@@ -11,27 +11,26 @@ export default function Home() {
         }
       `}</style>
 
-      <section className="relative min-h-screen flex items-center px-8 py-24 overflow-hidden">
-        <div className="absolute top-0 bottom-0 left-0 w-1/2 overflow-hidden">
-          <img 
-            src="/mosaic.png" 
-            alt="" 
-            className="w-full h-full object-cover"
-          />
-        </div>
+      <div className="absolute top-0 bottom-0 left-0 w-1/2 overflow-hidden hidden md:block">
+  <img 
+    src="/mosaic.png" 
+    alt="" 
+    className="w-full h-full object-cover"
+  />
+</div>
         
         <div 
-          className="absolute top-0 bottom-0 right-0 w-1/2"
-          style={{
-            background: 'linear-gradient(135deg, #1a0a1f 0%, #0a0a0f 50%, #0f0a1a 100%)'
-          }}
-        />
+  className="absolute inset-0 md:top-0 md:bottom-0 md:right-0 md:left-auto md:w-1/2"
+  style={{
+    background: 'linear-gradient(135deg, #1a0a1f 0%, #0a0a0f 50%, #0f0a1a 100%)'
+  }}
+/>
         
-        <div className="relative z-10 w-1/2 max-w-[650px] ml-auto pl-[125px] pr-16 pt-24" style={{ color: '#ffffff' }}>
-         <h1 className="text-8xl leading-[1.3] tracking-tight mb-16" style={{ color: '#ffffff' }}>
+       <div className="relative z-10 w-full md:w-1/2 max-w-[650px] mx-auto md:ml-auto px-6 md:pl-[125px] md:pr-16 pt-12 md:pt-24 text-center md:text-left" style={{ color: '#ffffff' }}>
+         <h1 className="text-5xl md:text-8xl leading-[1.3] tracking-tight mb-8 md:mb-16" style={{ color: '#ffffff' }}>
             You're not lost.<br />You're in a pattern.
           </h1>
-          <p className="text-2xl font-light mb-16" style={{ color: '#d1d5db', lineHeight: '2' }}>
+          <p className="text-lg md:text-2xl font-light mb-8 md:mb-16" style={{ color: '#d1d5db', lineHeight: '2' }}>
             A diagnostic tool that maps your professional situation against 15 recognizable patterns experienced in midlife.
           </p>
           <a
