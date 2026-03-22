@@ -97,10 +97,8 @@ export default function Home() {
       <footer className="pt-32 pb-12 px-8 border-t border-white/10">
         <div className="max-w-[1400px] mx-auto">
           <div className="flex justify-between items-center text-sm text-gray-500 mb-8">
-            <div>Life Pattern Engine</div>
-            <div>— Zdnk</div>
           </div>
-          <div className="text-center text-sm text-gray-600">
+          <div className="text-center text-sm text-white">
             © Copyright: Life Pattern Engine 2026 - All Rights Reserved
           </div>
         </div>
