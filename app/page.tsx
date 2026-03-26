@@ -10,7 +10,6 @@ export default function Home() {
         overflow: 'hidden'
       }}
     >
-      {/* Background Image */}
       <div
         style={{
           position: 'absolute',
@@ -26,7 +25,6 @@ export default function Home() {
         }}
       />
 
-      {/* Dark Overlay */}
       <div
         style={{
           position: 'absolute',
@@ -39,7 +37,6 @@ export default function Home() {
         }}
       />
 
-      {/* Content */}
       <div
         style={{
           position: 'relative',
