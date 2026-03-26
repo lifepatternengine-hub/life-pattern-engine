@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function Home() {
   return (
     <div
@@ -73,7 +71,7 @@ export default function Home() {
           Discover your professional archetype and unlock your next chapter
         </p>
 
-        
+        <a
           href="https://tally.so/r/vG2rO8"
           style={{
             display: 'inline-block',
