@@ -1,114 +1,94 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
-import { calculateScores } from '@/lib/scoring';
+import { scoreResponse } from '@/lib/scoring-engine';
 
-const QUESTION_KEY_MAP: Record<string, number | string> = {
-  'question_0ERbYy': 1,
-  'question_zK50AR': 2,
-  'question_5dPlYo': 3,
-  'question_dYeZoo': 4,
-  'question_YZlobB': 5,
-  'question_DV6XoR': 6,
-  'question_lNk0jk': 7,
-  'question_RzyZQ9': 8,
-  'question_oAL0ZP': 9,
-  'question_GrAoVZ': 10,
-  'question_OAMjZR': 11,
-  'question_VZO9ag': 12,
-  'question_PAJ2NV': 13,
-  'question_EP7BG4': 14,
-  'question_rlM0QN': 15,
-  'question_42V10X': 16,
-  'question_jBA04a': 17,
-  'question_24Gbdj': 18,
-  'question_xd50br': 19,
-  'question_RzyZed': 20,
-  'question_oAL0Ne': 21,
-  'question_GrAoEp': 22,
-  'question_OAMjq7': 23,
-  'question_VZO97J': 24,
-  'question_PAJ2Q5': 25,
-  'question_EP7BVX': 26,
-  'question_rlM09l': 27,
-  'question_42V10k': 28,
-  'question_jBA04x': 'email',
+const NOTION_URLS: Record<string, string> = {
+  BOA: "https://subdued-castanet-545.notion.site/BOA-Burned-out-Achiever-324a21b2a01b80539c77c8d4032b8c28",
+  SBM: "https://subdued-castanet-545.notion.site/SBM-Stable-But-Meaningless-324a21b2a01b80a2a8d5dcd6ef405fa8",
+  LCA: "https://subdued-castanet-545.notion.site/LCA-Late-Creative-Awakening-324a21b2a01b80f8a05cf1c0c1094a13",
+  CE: "https://subdued-castanet-545.notion.site/CE-Corporate-Exit-324a21b2a01b8095b0c3f8a3dba21c01",
+  CP: "https://subdued-castanet-545.notion.site/CP-Career-Plateau-324a21b2a01b80a6ab3cf4620fcc16cf",
+  RE: "https://subdued-castanet-545.notion.site/RE-Reluctant-Entrepreneur-324a21b2a01b80439f97d7c65b854d81",
+  VR: "https://subdued-castanet-545.notion.site/VR-Values-Rupture-324a21b2a01b805c9a3cfa01e2ecae49",
+  RO: "https://subdued-castanet-545.notion.site/RO-Responsibility-Overload-324a21b2a01b80d6ad7effc1c85ab11a",
+  PCT: "https://subdued-castanet-545.notion.site/PCT-Portfolio-Career-Transition-324a21b2a01b80ee8b63d0243c1c4cd2",
+  ISG: "https://subdued-castanet-545.notion.site/ISG-Identity-Skill-Gap-324a21b2a01b80a889ecdaaa290c42c8",
+  DA: "https://subdued-castanet-545.notion.site/DA-Delayed-Ambition-324a21b2a01b800498e3cd947f96efde",
+  SC: "https://subdued-castanet-545.notion.site/SC-Specialist-Ceiling-324a21b2a01b8050a73beabe97bd195b",
+  PSV: "https://subdued-castanet-545.notion.site/PSV-Post-Success-Vacuum-324a21b2a01b80439eb2c414d9fc905b",
+  GD: "https://subdued-castanet-545.notion.site/GD-Geographic-Displacement-324a21b2a01b80e6a2c4eabc45067210",
+  LRP: "https://subdued-castanet-545.notion.site/LRP-Late-Reinvention-Path-324a21b2a01b8087803afa0de4b32df1"
 };
 
-export async function POST(request: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey = process.env.SUPABASE_ANON_KEY;
-
-    if (!supabaseUrl || !supabaseKey) {
-      console.error('Missing Supabase environment variables');
-      return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
-    }
-
-    const supabase = createClient(supabaseUrl, supabaseKey);
-    const payload = await request.json();
+    const payload = await req.json();
     
     console.log('Received Tally webhook:', JSON.stringify(payload, null, 2));
     
-    const tallyResponseId = payload.data.responseId;
-    const fields = payload.data.fields;
-    let email = '';
-    const answers: Record<string, any> = {};
+    // Extract data from Tally payload
+    const { data } = payload;
+    if (!data || !data.fields) {
+      return NextResponse.json({ error: 'Invalid payload structure' }, { status: 400 });
+    }
     
-    fields.forEach((field: any) => {
-      const mappedKey = QUESTION_KEY_MAP[field.key];
-      
-      if (mappedKey === 'email') {
-        email = field.value;
-      } else if (typeof mappedKey === 'number') {
-        if (field.type === 'MULTIPLE_CHOICE' && Array.isArray(field.value)) {
-          answers[`question_${mappedKey}`] = field.value[0];
-        } else if (field.type === 'LINEAR_SCALE') {
-          answers[`question_${mappedKey}`] = field.value;
-        } else if (field.type === 'RANKING' && Array.isArray(field.value)) {
-          answers[`question_${mappedKey}`] = field.value;
-        } else {
-          answers[`question_${mappedKey}`] = field.value;
-        }
-      }
+    const { responseId, fields } = data;
+    
+    // Extract email
+    const emailField = fields.find((f: any) => f.type === 'INPUT_EMAIL');
+    const email = emailField?.value || 'unknown@example.com';
+    
+    console.log(`Processing response ${responseId} for ${email}`);
+    
+    // Score the response using the complete scoring engine
+    const scoringResult = scoreResponse(fields);
+    
+    console.log('Scoring result:', {
+      primary: scoringResult.primary_archetype,
+      secondary: scoringResult.secondary_archetype,
+      confidence: scoringResult.confidence,
+      match_reasons: scoringResult.match_reasons
     });
     
-    if (!email) {
-      return NextResponse.json({ error: 'Email is required' }, { status: 400 });
-    }
+    // Create Supabase client (INSIDE the function)
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_ANON_KEY!
+    );
     
-    const scores = calculateScores(answers);
-    const scoreEntries = Object.entries(scores);
-    const sortedScores = scoreEntries.sort((a, b) => Number(b[1]) - Number(a[1]));
-    const primaryArchetype = sortedScores[0][0];
-    const secondaryArchetype = sortedScores[1] && Number(sortedScores[1][1]) > 0 ? sortedScores[1][0] : null;
-    
-    const { error } = await supabase
+    // Save to Supabase
+    const { data: saveData, error: saveError } = await supabase
       .from('responses')
       .insert({
-        id: tallyResponseId,
-        email,
-        answers,
-        scores,
-        primary_archetype: primaryArchetype,
-        secondary_archetype: secondaryArchetype,
-      })
-      .select()
-      .single();
+        id: responseId,
+        email: email,
+        answers: scoringResult.answers,
+        scores: scoringResult.dimension_scores,
+        primary_archetype: scoringResult.primary_archetype,
+        secondary_archetype: scoringResult.secondary_archetype,
+        created_at: new Date().toISOString()
+      });
     
-    if (error) {
-      console.error('Supabase error:', error);
-      return NextResponse.json({ error: 'Database error' }, { status: 500 });
+    if (saveError) {
+      console.error('Supabase error:', saveError);
+      return NextResponse.json({ error: 'Database error', details: saveError }, { status: 500 });
     }
     
-    console.log('Saved response with ID:', tallyResponseId);
+    console.log('Saved to Supabase successfully');
     
-    // Return 302 redirect
-    const redirectUrl = `https://life-pattern-engine.vercel.app/result/${tallyResponseId}`;
+    return NextResponse.json({ 
+      success: true,
+      responseId,
+      primary_archetype: scoringResult.primary_archetype,
+      secondary_archetype: scoringResult.secondary_archetype,
+      confidence: scoringResult.confidence
+    });
     
-    return NextResponse.redirect(redirectUrl, 302);
-    
-  } catch (error) {
+  } catch (error: any) {
     console.error('Webhook error:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return NextResponse.json({ 
+      error: 'Internal server error', 
+      message: error.message 
+    }, { status: 500 });
   }
 }
