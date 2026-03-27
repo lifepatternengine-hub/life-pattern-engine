@@ -1,0 +1,442 @@
+{
+  "version": "1.0",
+  "dimensions": [
+    "depletion",
+    "stagnation",
+    "creative_suppression",
+    "constraint_level",
+    "identity_fragmentation",
+    "meaning_deficit",
+    "financial_pressure",
+    "change_readiness",
+    "autonomy_frustration",
+    "values_conflict",
+    "network_disruption",
+    "ambition_deferral"
+  ],
+  "clusters": [
+    { "id": "work_situation", "label": "Your work situation", "order": 1 },
+    { "id": "energy_signals", "label": "Energy and capacity", "order": 2 },
+    { "id": "frustration_type", "label": "What frustrates you", "order": 3 },
+    { "id": "identity_anchors", "label": "Identity and meaning", "order": 4 },
+    { "id": "constraint_map", "label": "Your constraints", "order": 5 },
+    { "id": "change_orientation", "label": "Change and risk", "order": 6 }
+  ],
+  "questions": [
+    {
+      "id": "Q01",
+      "cluster": "work_situation",
+      "order": 1,
+      "type": "single_select",
+      "text": "How long have you been in your current role or professional situation?",
+      "options": [
+        { "id": "Q01A", "label": "Less than 2 years", "weights": { "stagnation": 0.0, "ambition_deferral": 0.1 } },
+        { "id": "Q01B", "label": "2–5 years", "weights": { "stagnation": 0.2, "ambition_deferral": 0.2 } },
+        { "id": "Q01C", "label": "5–10 years", "weights": { "stagnation": 0.5, "ambition_deferral": 0.4 } },
+        { "id": "Q01D", "label": "10–20 years", "weights": { "stagnation": 0.7, "ambition_deferral": 0.6 } },
+        { "id": "Q01E", "label": "More than 20 years", "weights": { "stagnation": 0.8, "ambition_deferral": 0.8, "specialist_ceiling": 0.6 } }
+      ]
+    },
+    {
+      "id": "Q02",
+      "cluster": "work_situation",
+      "order": 2,
+      "type": "single_select",
+      "text": "Which best describes the trajectory of your career over the past 3 years?",
+      "options": [
+        { "id": "Q02A", "label": "Actively advancing — new responsibilities, promotions, growth", "weights": { "stagnation": 0.0, "depletion": 0.3 } },
+        { "id": "Q02B", "label": "Stable — same level, similar work, no major change", "weights": { "stagnation": 0.7, "meaning_deficit": 0.4 } },
+        { "id": "Q02C", "label": "Declining — role reduced, org shrinking, or market contracting", "weights": { "stagnation": 0.6, "financial_pressure": 0.6, "identity_fragmentation": 0.5 } },
+        { "id": "Q02D", "label": "Disrupted — major change imposed on me (redundancy, restructure, relocation)", "weights": { "identity_fragmentation": 0.8, "network_disruption": 0.6, "financial_pressure": 0.5 } },
+        { "id": "Q02E", "label": "In transition — I've recently changed or am actively changing", "weights": { "change_readiness": 0.7, "identity_fragmentation": 0.4 } }
+      ]
+    },
+    {
+      "id": "Q03",
+      "cluster": "work_situation",
+      "order": 3,
+      "type": "single_select",
+      "text": "How long since you last felt your career was genuinely moving forward?",
+      "options": [
+        { "id": "Q03A", "label": "Within the past year", "weights": { "stagnation": 0.1 } },
+        { "id": "Q03B", "label": "1–2 years ago", "weights": { "stagnation": 0.3, "meaning_deficit": 0.2 } },
+        { "id": "Q03C", "label": "2–4 years ago", "weights": { "stagnation": 0.6, "meaning_deficit": 0.4 } },
+        { "id": "Q03D", "label": "More than 4 years ago", "weights": { "stagnation": 0.8, "meaning_deficit": 0.6, "ambition_deferral": 0.5 } },
+        { "id": "Q03E", "label": "I'm not sure it ever did", "weights": { "stagnation": 0.7, "ambition_deferral": 0.8, "identity_fragmentation": 0.6 } }
+      ]
+    },
+    {
+      "id": "Q04",
+      "cluster": "work_situation",
+      "order": 4,
+      "type": "single_select",
+      "text": "Which best describes your current employer or work context?",
+      "options": [
+        { "id": "Q04A", "label": "Large corporation (500+ employees)", "weights": { "autonomy_frustration": 0.6, "identity_fragmentation": 0.5, "stagnation": 0.4 } },
+        { "id": "Q04B", "label": "Mid-size company (50–500)", "weights": { "autonomy_frustration": 0.3, "stagnation": 0.3 } },
+        { "id": "Q04C", "label": "Small company or startup (<50)", "weights": { "financial_pressure": 0.3, "change_readiness": 0.4 } },
+        { "id": "Q04D", "label": "Public sector or institution", "weights": { "stagnation": 0.5, "autonomy_frustration": 0.5, "values_conflict": 0.3 } },
+        { "id": "Q04E", "label": "Self-employed / freelance", "weights": { "financial_pressure": 0.4, "autonomy_frustration": 0.1 } },
+        { "id": "Q04F", "label": "Currently between roles", "weights": { "financial_pressure": 0.5, "identity_fragmentation": 0.6, "change_readiness": 0.5 } }
+      ]
+    },
+    {
+      "id": "Q05",
+      "cluster": "energy_signals",
+      "order": 5,
+      "type": "slider",
+      "text": "On a typical working day, how much energy do you have left at the end of it?",
+      "min_label": "Completely empty",
+      "max_label": "Plenty remaining",
+      "min": 0,
+      "max": 10,
+      "weights_by_range": [
+        { "range": [0, 3], "weights": { "depletion": 0.9, "constraint_level": 0.4 } },
+        { "range": [4, 6], "weights": { "depletion": 0.5 } },
+        { "range": [7, 10], "weights": { "depletion": 0.1 } }
+      ]
+    },
+    {
+      "id": "Q06",
+      "cluster": "energy_signals",
+      "order": 6,
+      "type": "single_select",
+      "text": "How has your energy for work changed over the past 2 years?",
+      "options": [
+        { "id": "Q06A", "label": "Significantly increased", "weights": { "depletion": 0.0 } },
+        { "id": "Q06B", "label": "Roughly the same", "weights": { "depletion": 0.2 } },
+        { "id": "Q06C", "label": "Gradually declining", "weights": { "depletion": 0.6, "meaning_deficit": 0.4 } },
+        { "id": "Q06D", "label": "Sharply declined", "weights": { "depletion": 0.9, "values_conflict": 0.3 } }
+      ]
+    },
+    {
+      "id": "Q07",
+      "cluster": "energy_signals",
+      "order": 7,
+      "type": "single_select",
+      "text": "When you think about your work, which feeling is most frequent?",
+      "options": [
+        { "id": "Q07A", "label": "Engaged and interested", "weights": { "meaning_deficit": 0.0, "depletion": 0.1 } },
+        { "id": "Q07B", "label": "Competent but indifferent", "weights": { "meaning_deficit": 0.8, "stagnation": 0.5 } },
+        { "id": "Q07C", "label": "Frustrated and blocked", "weights": { "autonomy_frustration": 0.8, "stagnation": 0.6 } },
+        { "id": "Q07D", "label": "Exhausted and empty", "weights": { "depletion": 0.9, "meaning_deficit": 0.5 } },
+        { "id": "Q07E", "label": "Conflicted — good at it but wrong for me", "weights": { "values_conflict": 0.7, "identity_fragmentation": 0.6, "meaning_deficit": 0.5 } },
+        { "id": "Q07F", "label": "Anxious — external pressure or instability", "weights": { "financial_pressure": 0.6, "constraint_level": 0.5 } }
+      ]
+    },
+    {
+      "id": "Q08",
+      "cluster": "energy_signals",
+      "order": 8,
+      "type": "single_select",
+      "text": "How often do you think about making a significant change?",
+      "options": [
+        { "id": "Q08A", "label": "Rarely — I'm broadly satisfied", "weights": { "change_readiness": 0.1 } },
+        { "id": "Q08B", "label": "Occasionally — it crosses my mind", "weights": { "change_readiness": 0.3, "ambition_deferral": 0.3 } },
+        { "id": "Q08C", "label": "Regularly — it's a background consideration", "weights": { "change_readiness": 0.5, "ambition_deferral": 0.5 } },
+        { "id": "Q08D", "label": "Constantly — it's hard to focus on anything else", "weights": { "change_readiness": 0.7, "autonomy_frustration": 0.6, "ambition_deferral": 0.6 } },
+        { "id": "Q08E", "label": "I've already decided — I'm in the process of changing", "weights": { "change_readiness": 0.9 } }
+      ]
+    },
+    {
+      "id": "Q09",
+      "cluster": "frustration_type",
+      "order": 9,
+      "type": "rank",
+      "text": "Rank these frustrations from most to least relevant to your situation right now.",
+      "options": [
+        { "id": "Q09A", "label": "I can't advance or grow where I am", "weights": { "stagnation": 0.8, "autonomy_frustration": 0.5 } },
+        { "id": "Q09B", "label": "I don't believe in what my work produces", "weights": { "values_conflict": 0.9, "meaning_deficit": 0.6 } },
+        { "id": "Q09C", "label": "I had a creative or personal path I never took", "weights": { "creative_suppression": 0.9, "ambition_deferral": 0.7 } },
+        { "id": "Q09D", "label": "I have no time or space for anything that matters to me", "weights": { "constraint_level": 0.9, "depletion": 0.6 } },
+        { "id": "Q09E", "label": "I don't control enough of my own work", "weights": { "autonomy_frustration": 0.9, "stagnation": 0.4 } },
+        { "id": "Q09F", "label": "I'm not sure what I actually want", "weights": { "identity_fragmentation": 0.8, "meaning_deficit": 0.6 } }
+      ],
+      "scoring_note": "Top 2 ranked options receive full weight. 3rd receives 0.5 weight. 4th–6th receive 0."
+    },
+    {
+      "id": "Q10",
+      "cluster": "frustration_type",
+      "order": 10,
+      "type": "single_select",
+      "text": "If you imagine a version of yourself 5 years from now that you'd respect — what's most different about their work life?",
+      "options": [
+        { "id": "Q10A", "label": "They work for themselves", "weights": { "autonomy_frustration": 0.8, "ambition_deferral": 0.5 } },
+        { "id": "Q10B", "label": "Their work produces something they believe in", "weights": { "values_conflict": 0.7, "meaning_deficit": 0.6 } },
+        { "id": "Q10C", "label": "They've finally pursued the thing they set aside", "weights": { "creative_suppression": 0.7, "ambition_deferral": 0.8 } },
+        { "id": "Q10D", "label": "They've changed field or profession entirely", "weights": { "change_readiness": 0.7, "stagnation": 0.5 } },
+        { "id": "Q10E", "label": "They have more control over their time", "weights": { "constraint_level": 0.7, "autonomy_frustration": 0.6 } },
+        { "id": "Q10F", "label": "They know clearly who they are professionally", "weights": { "identity_fragmentation": 0.9 } },
+        { "id": "Q10G", "label": "Not much is different — I need adjustment, not reinvention", "weights": { "change_readiness": 0.2, "stagnation": 0.4 } }
+      ]
+    },
+    {
+      "id": "Q11",
+      "cluster": "frustration_type",
+      "order": 11,
+      "type": "single_select",
+      "text": "Is there something specific you've wanted to pursue professionally but haven't?",
+      "options": [
+        { "id": "Q11A", "label": "Yes — a creative or artistic practice", "weights": { "creative_suppression": 0.9, "ambition_deferral": 0.6 } },
+        { "id": "Q11B", "label": "Yes — my own business or independent practice", "weights": { "autonomy_frustration": 0.7, "ambition_deferral": 0.7 } },
+        { "id": "Q11C", "label": "Yes — a completely different profession or field", "weights": { "ambition_deferral": 0.8, "identity_fragmentation": 0.5 } },
+        { "id": "Q11D", "label": "Yes — something vague I haven't fully defined", "weights": { "identity_fragmentation": 0.7, "meaning_deficit": 0.6 } },
+        { "id": "Q11E", "label": "No — I know what I want, I just need the right conditions", "weights": { "change_readiness": 0.5, "constraint_level": 0.5 } },
+        { "id": "Q11F", "label": "No — I'm not sure there is such a thing for me", "weights": { "identity_fragmentation": 0.8, "meaning_deficit": 0.7 } }
+      ]
+    },
+    {
+      "id": "Q12",
+      "cluster": "identity_anchors",
+      "order": 12,
+      "type": "slider",
+      "text": "What percentage of your sense of identity comes from your professional role?",
+      "min_label": "Very little",
+      "max_label": "Almost all of it",
+      "min": 0,
+      "max": 100,
+      "weights_by_range": [
+        { "range": [0, 30], "weights": { "identity_fragmentation": 0.2 } },
+        { "range": [31, 60], "weights": { "identity_fragmentation": 0.4 } },
+        { "range": [61, 80], "weights": { "identity_fragmentation": 0.7 } },
+        { "range": [81, 100], "weights": { "identity_fragmentation": 0.9, "depletion": 0.3 } }
+      ]
+    },
+    {
+      "id": "Q13",
+      "cluster": "identity_anchors",
+      "order": 13,
+      "type": "single_select",
+      "text": "When you describe yourself to someone you've just met, what leads?",
+      "options": [
+        { "id": "Q13A", "label": "My job title or employer", "weights": { "identity_fragmentation": 0.7, "autonomy_frustration": 0.4 } },
+        { "id": "Q13B", "label": "My field or profession", "weights": { "identity_fragmentation": 0.5 } },
+        { "id": "Q13C", "label": "Something outside work — family, interests, projects", "weights": { "identity_fragmentation": 0.2, "creative_suppression": 0.3 } },
+        { "id": "Q13D", "label": "I find this question genuinely difficult", "weights": { "identity_fragmentation": 0.9, "meaning_deficit": 0.5 } }
+      ]
+    },
+    {
+      "id": "Q14",
+      "cluster": "identity_anchors",
+      "order": 14,
+      "type": "single_select",
+      "text": "Have you significantly changed professional direction before?",
+      "options": [
+        { "id": "Q14A", "label": "No — I've been in the same field since the start", "weights": { "ambition_deferral": 0.4, "stagnation": 0.3 } },
+        { "id": "Q14B", "label": "Once — it went reasonably well", "weights": { "change_readiness": 0.5 } },
+        { "id": "Q14C", "label": "Once — it was difficult", "weights": { "change_readiness": 0.3, "constraint_level": 0.3 } },
+        { "id": "Q14D", "label": "Multiple times — I'm comfortable with change", "weights": { "change_readiness": 0.8, "identity_fragmentation": 0.3 } },
+        { "id": "Q14E", "label": "I've tried but it didn't take", "weights": { "change_readiness": 0.3, "identity_fragmentation": 0.5, "constraint_level": 0.4 } }
+      ]
+    },
+    {
+      "id": "Q15",
+      "cluster": "identity_anchors",
+      "order": 15,
+      "type": "single_select",
+      "text": "Which statement most accurately describes your relationship to your current work?",
+      "options": [
+        { "id": "Q15A", "label": "It's genuinely what I'd choose if I could choose anything", "weights": { "meaning_deficit": 0.0 } },
+        { "id": "Q15B", "label": "It suits me reasonably well but isn't my ideal", "weights": { "meaning_deficit": 0.3, "ambition_deferral": 0.3 } },
+        { "id": "Q15C", "label": "It was once right for me but no longer is", "weights": { "meaning_deficit": 0.6, "stagnation": 0.5, "depletion": 0.4 } },
+        { "id": "Q15D", "label": "It was never really right — I chose it for practical reasons", "weights": { "meaning_deficit": 0.8, "ambition_deferral": 0.7, "values_conflict": 0.4 } },
+        { "id": "Q15E", "label": "I'm not sure what would be right — that's part of the problem", "weights": { "identity_fragmentation": 0.9, "meaning_deficit": 0.6 } }
+      ]
+    },
+    {
+      "id": "Q16",
+      "cluster": "identity_anchors",
+      "order": 16,
+      "type": "single_select",
+      "text": "Is there a creative, artistic, or personal practice you've set aside over the course of your career?",
+      "options": [
+        { "id": "Q16A", "label": "Yes — and I think about it often", "weights": { "creative_suppression": 0.9, "ambition_deferral": 0.7 } },
+        { "id": "Q16B", "label": "Yes — but I've mostly made peace with it", "weights": { "creative_suppression": 0.5, "ambition_deferral": 0.4 } },
+        { "id": "Q16C", "label": "Possibly — I'm not sure it counts as a real loss", "weights": { "creative_suppression": 0.4, "identity_fragmentation": 0.4 } },
+        { "id": "Q16D", "label": "No — creativity isn't a significant part of my identity", "weights": { "creative_suppression": 0.0 } }
+      ]
+    },
+    {
+      "id": "Q17",
+      "cluster": "constraint_map",
+      "order": 17,
+      "type": "multi_select",
+      "text": "Which of the following genuinely constrain your options? Select all that apply.",
+      "options": [
+        { "id": "Q17A", "label": "Mortgage or significant financial obligations", "weights": { "constraint_level": 0.6, "financial_pressure": 0.6 } },
+        { "id": "Q17B", "label": "Children at home who depend on my income", "weights": { "constraint_level": 0.7, "financial_pressure": 0.5 } },
+        { "id": "Q17C", "label": "Caring responsibilities for a parent or family member", "weights": { "constraint_level": 0.8, "depletion": 0.4 } },
+        { "id": "Q17D", "label": "Partner's career limits my geographic options", "weights": { "constraint_level": 0.5, "network_disruption": 0.3 } },
+        { "id": "Q17E", "label": "Health issues — mine or a dependent's", "weights": { "constraint_level": 0.7, "depletion": 0.5 } },
+        { "id": "Q17F", "label": "Limited savings or no financial runway", "weights": { "financial_pressure": 0.8, "constraint_level": 0.5 } },
+        { "id": "Q17G", "label": "Geographic location limits my options", "weights": { "constraint_level": 0.5, "network_disruption": 0.5 } },
+        { "id": "Q17H", "label": "None of the above significantly constrain me", "weights": { "constraint_level": 0.0, "financial_pressure": 0.0 } }
+      ],
+      "scoring_note": "Sum weights from all selected options, cap total contribution per dimension at 1.0"
+    },
+    {
+      "id": "Q18",
+      "cluster": "constraint_map",
+      "order": 18,
+      "type": "single_select",
+      "text": "If you made a significant career change, roughly how many months of financial runway do you have?",
+      "options": [
+        { "id": "Q18A", "label": "Less than 3 months", "weights": { "financial_pressure": 0.9, "constraint_level": 0.7 } },
+        { "id": "Q18B", "label": "3–6 months", "weights": { "financial_pressure": 0.6, "constraint_level": 0.4 } },
+        { "id": "Q18C", "label": "6–12 months", "weights": { "financial_pressure": 0.3, "constraint_level": 0.2 } },
+        { "id": "Q18D", "label": "12–24 months", "weights": { "financial_pressure": 0.1 } },
+        { "id": "Q18E", "label": "More than 24 months", "weights": { "financial_pressure": 0.0 } },
+        { "id": "Q18F", "label": "I haven't calculated this", "weights": { "financial_pressure": 0.4 } }
+      ]
+    },
+    {
+      "id": "Q19",
+      "cluster": "constraint_map",
+      "order": 19,
+      "type": "single_select",
+      "text": "Have you relocated in the past 5 years for work, a partner's career, or lifestyle?",
+      "options": [
+        { "id": "Q19A", "label": "Yes — and I'm still rebuilding my professional network", "weights": { "network_disruption": 0.9, "identity_fragmentation": 0.5 } },
+        { "id": "Q19B", "label": "Yes — and I've largely rebuilt", "weights": { "network_disruption": 0.3 } },
+        { "id": "Q19C", "label": "No — I've been in the same location", "weights": { "network_disruption": 0.0 } },
+        { "id": "Q19D", "label": "I'm considering relocating", "weights": { "network_disruption": 0.3, "change_readiness": 0.4 } }
+      ]
+    },
+    {
+      "id": "Q20",
+      "cluster": "constraint_map",
+      "order": 20,
+      "type": "single_select",
+      "text": "How specialized is your current expertise?",
+      "options": [
+        { "id": "Q20A", "label": "Very narrow — deep expert in a specific domain", "weights": { "stagnation": 0.5, "financial_pressure": 0.4, "identity_fragmentation": 0.3 } },
+        { "id": "Q20B", "label": "Moderately specialized — clear field, some transferability", "weights": { "stagnation": 0.2 } },
+        { "id": "Q20C", "label": "Broadly skilled — generalist with varied experience", "weights": { "identity_fragmentation": 0.3, "autonomy_frustration": 0.2 } },
+        { "id": "Q20D", "label": "Specialized but in a domain I want to leave entirely", "weights": { "identity_fragmentation": 0.7, "change_readiness": 0.5, "ambition_deferral": 0.4 } }
+      ]
+    },
+    {
+      "id": "Q21",
+      "cluster": "change_orientation",
+      "order": 21,
+      "type": "single_select",
+      "text": "How urgent does making a change feel?",
+      "options": [
+        { "id": "Q21A", "label": "Not urgent — I'm exploring ideas", "weights": { "change_readiness": 0.2 } },
+        { "id": "Q21B", "label": "Moderate — within the next 1–2 years", "weights": { "change_readiness": 0.4 } },
+        { "id": "Q21C", "label": "Significant — within the next 6–12 months", "weights": { "change_readiness": 0.7, "depletion": 0.3 } },
+        { "id": "Q21D", "label": "Very urgent — I need to act soon", "weights": { "change_readiness": 0.9, "depletion": 0.5, "financial_pressure": 0.3 } },
+        { "id": "Q21E", "label": "No urgency — I'm not sure I want to change", "weights": { "change_readiness": 0.1, "stagnation": 0.3 } }
+      ]
+    },
+    {
+      "id": "Q22",
+      "cluster": "change_orientation",
+      "order": 22,
+      "type": "single_select",
+      "text": "Which type of change feels most honest about what you actually need?",
+      "options": [
+        { "id": "Q22A", "label": "Adjustment — same field, different role or org", "weights": { "stagnation": 0.5, "change_readiness": 0.3 } },
+        { "id": "Q22B", "label": "Pivot — adjacent field, transfer existing skills", "weights": { "change_readiness": 0.5, "ambition_deferral": 0.4 } },
+        { "id": "Q22C", "label": "Reinvention — new domain, new identity, start over", "weights": { "change_readiness": 0.8, "ambition_deferral": 0.6, "identity_fragmentation": 0.4 } },
+        { "id": "Q22D", "label": "Independence — same work, different structure (freelance, consulting)", "weights": { "autonomy_frustration": 0.8, "change_readiness": 0.5 } },
+        { "id": "Q22E", "label": "I don't know yet", "weights": { "identity_fragmentation": 0.7, "meaning_deficit": 0.5 } }
+      ]
+    },
+    {
+      "id": "Q23",
+      "cluster": "change_orientation",
+      "order": 23,
+      "type": "single_select",
+      "text": "When you imagine making a significant professional change, what is your dominant feeling?",
+      "options": [
+        { "id": "Q23A", "label": "Excitement — I'm ready", "weights": { "change_readiness": 0.8 } },
+        { "id": "Q23B", "label": "Cautious optimism — I want it but I'm careful", "weights": { "change_readiness": 0.5, "constraint_level": 0.3 } },
+        { "id": "Q23C", "label": "Fear — the risks feel very real", "weights": { "constraint_level": 0.5, "financial_pressure": 0.4, "identity_fragmentation": 0.3 } },
+        { "id": "Q23D", "label": "Relief — like I've already decided and just need to act", "weights": { "change_readiness": 0.9, "autonomy_frustration": 0.5 } },
+        { "id": "Q23E", "label": "Paralysis — I can't make myself start", "weights": { "constraint_level": 0.4, "identity_fragmentation": 0.6, "ambition_deferral": 0.7 } }
+      ]
+    },
+    {
+      "id": "Q24",
+      "cluster": "change_orientation",
+      "order": 24,
+      "type": "single_select",
+      "text": "How do you typically respond when you imagine a worst-case scenario of a career change going badly?",
+      "options": [
+        { "id": "Q24A", "label": "I'm reasonably comfortable with it — I'd recover", "weights": { "change_readiness": 0.7, "financial_pressure": 0.1 } },
+        { "id": "Q24B", "label": "Uncomfortable but manageable with planning", "weights": { "change_readiness": 0.4, "constraint_level": 0.3 } },
+        { "id": "Q24C", "label": "It genuinely scares me and slows me down", "weights": { "constraint_level": 0.6, "financial_pressure": 0.5, "identity_fragmentation": 0.4 } },
+        { "id": "Q24D", "label": "The financial consequences would be very serious", "weights": { "financial_pressure": 0.9, "constraint_level": 0.7 } }
+      ]
+    },
+    {
+      "id": "Q25",
+      "cluster": "change_orientation",
+      "order": 25,
+      "type": "single_select",
+      "text": "Have you been actively planning a change for more than a year without acting?",
+      "options": [
+        { "id": "Q25A", "label": "Yes — for 1–2 years", "weights": { "ambition_deferral": 0.6, "autonomy_frustration": 0.5 } },
+        { "id": "Q25B", "label": "Yes — for more than 2 years", "weights": { "ambition_deferral": 0.9, "autonomy_frustration": 0.6 } },
+        { "id": "Q25C", "label": "No — I've been thinking about it but not actively planning", "weights": { "ambition_deferral": 0.3 } },
+        { "id": "Q25D", "label": "No — I'm in the middle of acting", "weights": { "change_readiness": 0.8, "ambition_deferral": 0.0 } },
+        { "id": "Q25E", "label": "No — I'm not yet sure I want to change", "weights": { "ambition_deferral": 0.1, "stagnation": 0.3 } }
+      ]
+    },
+    {
+      "id": "Q26",
+      "cluster": "change_orientation",
+      "order": 26,
+      "type": "single_select",
+      "text": "Does your work require you to say or do things you privately disagree with?",
+      "options": [
+        { "id": "Q26A", "label": "Rarely or never", "weights": { "values_conflict": 0.0 } },
+        { "id": "Q26B", "label": "Occasionally — minor compromises", "weights": { "values_conflict": 0.2 } },
+        { "id": "Q26C", "label": "Regularly — I've adapted but it costs me something", "weights": { "values_conflict": 0.7, "depletion": 0.4 } },
+        { "id": "Q26D", "label": "Constantly — it's become a significant source of conflict", "weights": { "values_conflict": 0.95, "depletion": 0.6, "meaning_deficit": 0.5 } }
+      ]
+    },
+    {
+      "id": "Q27",
+      "cluster": "change_orientation",
+      "order": 27,
+      "type": "single_select",
+      "text": "After a major professional achievement or goal completion, how do you typically feel?",
+      "options": [
+        { "id": "Q27A", "label": "Energized and ready for the next thing", "weights": { "identity_fragmentation": 0.1 } },
+        { "id": "Q27B", "label": "Satisfied, then ready to move on", "weights": { "identity_fragmentation": 0.2 } },
+        { "id": "Q27C", "label": "Strangely flat or empty", "weights": { "identity_fragmentation": 0.7, "meaning_deficit": 0.7 } },
+        { "id": "Q27D", "label": "Uncertain what comes next", "weights": { "identity_fragmentation": 0.6, "meaning_deficit": 0.5 } },
+        { "id": "Q27E", "label": "I haven't had a major achievement recently", "weights": { "stagnation": 0.4, "meaning_deficit": 0.3 } }
+      ]
+    },
+    {
+      "id": "Q28",
+      "cluster": "change_orientation",
+      "order": 28,
+      "type": "single_select",
+      "text": "Which statement most honestly describes why you haven't changed yet?",
+      "options": [
+        { "id": "Q28A", "label": "Financial risk — I can't afford for it to go wrong", "weights": { "financial_pressure": 0.8, "constraint_level": 0.6 } },
+        { "id": "Q28B", "label": "I don't know what to change to", "weights": { "identity_fragmentation": 0.8, "meaning_deficit": 0.6 } },
+        { "id": "Q28C", "label": "Responsibilities — other people depend on me", "weights": { "constraint_level": 0.8, "ambition_deferral": 0.5 } },
+        { "id": "Q28D", "label": "Fear of failure or being exposed", "weights": { "identity_fragmentation": 0.7, "ambition_deferral": 0.6 } },
+        { "id": "Q28E", "label": "I keep moving the target — the conditions are never right", "weights": { "ambition_deferral": 0.9, "autonomy_frustration": 0.4 } },
+        { "id": "Q28F", "label": "I've already started changing", "weights": { "change_readiness": 0.9 } },
+        { "id": "Q28G", "label": "I'm not sure I want to — the status quo is fine", "weights": { "stagnation": 0.5, "meaning_deficit": 0.3 } }
+      ]
+    }
+  ],
+  "scoring": {
+    "method": "weighted_vector",
+    "description": "Each answer contributes dimension scores between 0 and 1. Final dimension score = sum of all contributing weights / max possible for that dimension, normalized to 0–1. Archetype match = cosine similarity between user dimension vector and archetype signature vector.",
+    "confidence_thresholds": {
+      "primary_high": 0.82,
+      "primary_moderate": 0.68,
+      "secondary_threshold_delta": 0.15
+    },
+    "match_reason_logic": "For each dimension where user score > 0.6 AND archetype signature > 0.6, generate a match reason string. Include top 3 matching dimensions in the result reveal.",
+    "mvp_note": "In MVP, use rule-based threshold matching rather than cosine similarity. Flag any dimension > 0.7 as 'signal present'. Count archetype signatures where 3+ high-signal dimensions align. Primary = highest count. Secondary = second highest if within 1 dimension count of primary."
+  }
+}

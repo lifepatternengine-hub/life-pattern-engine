@@ -3,34 +3,36 @@ import { createClient } from '@supabase/supabase-js';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = await params;
+    const { id } = await context.params;
     
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey = process.env.SUPABASE_ANON_KEY;
-
-    if (!supabaseUrl || !supabaseKey) {
-      return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
-    }
-
-    const supabase = createClient(supabaseUrl, supabaseKey);
+    // Create Supabase client
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_ANON_KEY!
+    );
     
+    // Fetch result from database
     const { data, error } = await supabase
       .from('responses')
       .select('*')
       .eq('id', id)
       .single();
-
+    
     if (error) {
-      console.error('Database error:', error);
+      console.error('Supabase error:', error);
       return NextResponse.json({ error: 'Result not found' }, { status: 404 });
     }
-
+    
     return NextResponse.json(data);
-  } catch (error) {
+    
+  } catch (error: any) {
     console.error('API error:', error);
-    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+    return NextResponse.json({ 
+      error: 'Internal server error', 
+      message: error.message 
+    }, { status: 500 });
   }
 }

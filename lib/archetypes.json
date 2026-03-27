@@ -1,0 +1,603 @@
+[
+  {
+    "id": "BOA",
+    "slug": "burned-out-achiever",
+    "name": "Burned-out achiever",
+    "category": "Depletion",
+    "short_description": "High output for years. Now the fuel is gone and identity is hollow.",
+    "long_description": "You have delivered consistently at a high level for an extended period. Externally, everything looks fine — strong performance, respected position, adequate income. Internally, the energy source has depleted. The work no longer produces satisfaction proportional to the effort. You may be functioning well by external measures while feeling fundamentally empty. This is not laziness or ingratitude. It is a recognizable physiological and psychological state that follows sustained high performance without adequate recovery or meaning.",
+    "editorial_note": "The defining pattern: the burnout is not about doing too much, it's about doing too much of something that stopped mattering. The trigger events in this archetype are rarely dramatic — they are moments of sudden clarity, not collapse.",
+    "signature": {
+      "depletion": 0.9,
+      "stagnation": 0.4,
+      "creative_suppression": 0.3,
+      "constraint_level": 0.4,
+      "identity_fragmentation": 0.6,
+      "meaning_deficit": 0.8,
+      "financial_pressure": 0.2,
+      "change_readiness": 0.5,
+      "autonomy_frustration": 0.5,
+      "values_conflict": 0.4,
+      "network_disruption": 0.1,
+      "ambition_deferral": 0.2
+    },
+    "related_archetypes": ["SBM", "VR", "CE"],
+    "trajectory_ids": ["BOA-01", "BOA-02", "BOA-03", "BOA-04", "BOA-05"],
+    "common_triggers": [
+      "Health event or panic attack",
+      "Moment of unexpected emotional flatness",
+      "Child or partner reflects the absence back",
+      "Peer exits and reports freedom"
+    ],
+    "common_paths": [
+      { "label": "Consulting / freelance", "base_rate": 0.31 },
+      { "label": "Internal restructure", "base_rate": 0.22 },
+      { "label": "Cross-industry pivot", "base_rate": 0.19 },
+      { "label": "Sabbatical", "base_rate": 0.14 },
+      { "label": "Start a business", "base_rate": 0.09 },
+      { "label": "Lifestyle downshift", "base_rate": 0.05 }
+    ],
+    "median_regret": 1.4,
+    "median_recovery_years": 2.1
+  },
+  {
+    "id": "SBM",
+    "slug": "stable-but-meaningless",
+    "name": "Stable but meaningless",
+    "category": "Numbness",
+    "short_description": "Nothing is wrong. Nothing feels right. The comfort itself is the problem.",
+    "long_description": "Your situation is objectively fine. Secure income, stable relationships, no acute crisis. And yet something is persistently absent. The work does not produce engagement, purpose, or forward motion. You may have stopped noticing your own dissatisfaction because nothing is bad enough to act on. The comfort is both the condition and the obstacle — there is no external pressure forcing the question you need to ask yourself.",
+    "editorial_note": "Distinct from burnout: the SBM person has energy, they just have nowhere meaningful to direct it. The trigger events are almost always quiet and indirect — a question from a child, a Sunday evening that won't end, a job offer that produces paralysis instead of excitement.",
+    "signature": {
+      "depletion": 0.3,
+      "stagnation": 0.7,
+      "creative_suppression": 0.5,
+      "constraint_level": 0.3,
+      "identity_fragmentation": 0.5,
+      "meaning_deficit": 0.9,
+      "financial_pressure": 0.1,
+      "change_readiness": 0.3,
+      "autonomy_frustration": 0.4,
+      "values_conflict": 0.3,
+      "network_disruption": 0.1,
+      "ambition_deferral": 0.6
+    },
+    "related_archetypes": ["BOA", "DA", "LCA"],
+    "trajectory_ids": ["SBM-01", "SBM-02", "SBM-03", "SBM-04", "SBM-05"],
+    "common_triggers": [
+      "Child asks what you enjoy",
+      "Job offer produces paralysis not excitement",
+      "Accidental discovery of latent interest",
+      "Colleague exits with visible relief"
+    ],
+    "common_paths": [
+      { "label": "Parallel pursuit alongside job", "base_rate": 0.38 },
+      { "label": "Internal role redesign", "base_rate": 0.27 },
+      { "label": "Sector change same function", "base_rate": 0.18 },
+      { "label": "Full pivot", "base_rate": 0.10 },
+      { "label": "Lifestyle restructure", "base_rate": 0.07 }
+    ],
+    "median_regret": 1.6,
+    "median_recovery_years": 1.8
+  },
+  {
+    "id": "LCA",
+    "slug": "late-creative-awakening",
+    "name": "Late creative awakening",
+    "category": "Emergence",
+    "short_description": "Creative drive suppressed by career pragmatics. Re-surfacing in 40s.",
+    "long_description": "You had a creative identity — as a writer, musician, visual artist, designer, or maker — that was set aside in favour of a more practical path. The decision made sense at the time. The creative impulse did not disappear; it went dormant. It is re-emerging now with more urgency and, paradoxically, more skill than it would have had at 25. The life experience you accumulated during the practical years is part of the work now.",
+    "editorial_note": "The creative identity never actually died — it went dormant. The trigger is almost always an accidental proof that the skill or drive still exists. The awakening is not the start of something new; it is the return of something old.",
+    "signature": {
+      "depletion": 0.3,
+      "stagnation": 0.5,
+      "creative_suppression": 0.95,
+      "constraint_level": 0.3,
+      "identity_fragmentation": 0.7,
+      "meaning_deficit": 0.7,
+      "financial_pressure": 0.2,
+      "change_readiness": 0.5,
+      "autonomy_frustration": 0.6,
+      "values_conflict": 0.2,
+      "network_disruption": 0.1,
+      "ambition_deferral": 0.7
+    },
+    "related_archetypes": ["SBM", "DA", "ISG"],
+    "trajectory_ids": ["LCA-01", "LCA-02", "LCA-03", "LCA-04", "LCA-05"],
+    "common_triggers": [
+      "Accidental proof of retained skill",
+      "Watching someone else do what you suppressed",
+      "Child or stranger recognises the skill",
+      "Old work rediscovered"
+    ],
+    "common_paths": [
+      { "label": "Parallel practice alongside job", "base_rate": 0.44 },
+      { "label": "Part-time restructure", "base_rate": 0.22 },
+      { "label": "Full creative career transition", "base_rate": 0.18 },
+      { "label": "Integration into existing role", "base_rate": 0.10 },
+      { "label": "Portfolio model", "base_rate": 0.06 }
+    ],
+    "median_regret": 2.1,
+    "median_recovery_years": 2.4
+  },
+  {
+    "id": "CE",
+    "slug": "corporate-exit",
+    "name": "Corporate exit",
+    "category": "Rupture",
+    "short_description": "Voluntarily or forced out of large org. Identity tied to the institution.",
+    "long_description": "You have left — or are leaving — a large organisation where you spent a significant portion of your career. Whether the exit was voluntary or imposed, the professional identity challenge is similar: the institution provided not just income but context, status, structure, and social fabric. All of that goes simultaneously. The practical job search is often the easier part. The identity rebuild is the part that takes longer than expected.",
+    "editorial_note": "The exit is rarely what the person thought it would be — emotionally or practically. The institution was the identity. Recovery timeline is consistently underestimated. Outcome ratings are consistently high.",
+    "signature": {
+      "depletion": 0.4,
+      "stagnation": 0.5,
+      "creative_suppression": 0.2,
+      "constraint_level": 0.3,
+      "identity_fragmentation": 0.9,
+      "meaning_deficit": 0.5,
+      "financial_pressure": 0.4,
+      "change_readiness": 0.6,
+      "autonomy_frustration": 0.7,
+      "values_conflict": 0.4,
+      "network_disruption": 0.5,
+      "ambition_deferral": 0.2
+    },
+    "related_archetypes": ["BOA", "PSV", "RE"],
+    "trajectory_ids": ["CE-01", "CE-02", "CE-03", "CE-04", "CE-05"],
+    "common_triggers": [
+      "Redundancy or restructuring",
+      "Values conflict with new leadership",
+      "Partnership or promotion denied",
+      "Voluntary exit after long deliberation"
+    ],
+    "common_paths": [
+      { "label": "Similar role smaller org", "base_rate": 0.33 },
+      { "label": "Independent consulting", "base_rate": 0.28 },
+      { "label": "Sector change", "base_rate": 0.17 },
+      { "label": "Interim / fractional work", "base_rate": 0.14 },
+      { "label": "Extended gap then rebuild", "base_rate": 0.08 }
+    ],
+    "median_regret": 1.4,
+    "median_recovery_years": 2.6
+  },
+  {
+    "id": "CP",
+    "slug": "career-plateau",
+    "name": "Career plateau",
+    "category": "Stasis",
+    "short_description": "Competent, stable, advancing has stopped. The ladder ran out.",
+    "long_description": "You have reached a ceiling — structural or content-based. Structurally: the organisation has no further positions available, or the people above you are not moving. Content-based: your skills have plateaued, the role no longer challenges you, and there is no growth left in the current position. Frustration is present but contained. You are functioning well and going nowhere.",
+    "editorial_note": "Two distinct sub-types: structural plateau (the ladder ran out) and content plateau (skills peaked, no growth challenge). Both present similarly but resolve differently. The plateau is almost always the company's structure, not the person's ceiling.",
+    "signature": {
+      "depletion": 0.3,
+      "stagnation": 0.95,
+      "creative_suppression": 0.3,
+      "constraint_level": 0.4,
+      "identity_fragmentation": 0.4,
+      "meaning_deficit": 0.5,
+      "financial_pressure": 0.3,
+      "change_readiness": 0.5,
+      "autonomy_frustration": 0.7,
+      "values_conflict": 0.2,
+      "network_disruption": 0.1,
+      "ambition_deferral": 0.5
+    },
+    "related_archetypes": ["RE", "PCT", "ISG"],
+    "trajectory_ids": ["CP-01", "CP-02", "CP-03", "CP-04", "CP-05"],
+    "common_triggers": [
+      "Younger colleague promoted above them",
+      "External candidate hired into role they expected",
+      "Repeated non-answers on advancement timeline",
+      "Accidental discovery of market value"
+    ],
+    "common_paths": [
+      { "label": "Move to competitor for advancement", "base_rate": 0.38 },
+      { "label": "Go independent / freelance", "base_rate": 0.24 },
+      { "label": "Retrain for qualification gap", "base_rate": 0.18 },
+      { "label": "Fractional / portfolio model", "base_rate": 0.12 },
+      { "label": "Co-found or start own practice", "base_rate": 0.08 }
+    ],
+    "median_regret": 1.8,
+    "median_recovery_years": 1.6
+  },
+  {
+    "id": "RE",
+    "slug": "reluctant-entrepreneur",
+    "name": "Reluctant entrepreneur",
+    "category": "Threshold",
+    "short_description": "Wants independence, afraid of the leap. Stays employed but thinks about exit constantly.",
+    "long_description": "The business idea, the freelance practice, or the independent path exists in your mind — often in substantial detail. It has existed there for years. The reasons you have not acted are real but have been stable long past their expiry date. You are not waiting for the right moment. You are waiting for permission, or for an external event to make the decision for you.",
+    "editorial_note": "The decision was already made years before the action. The trigger events in this archetype are permissions, not revelations. The pattern is not about not knowing what to do — it is about not yet believing you are allowed to do it.",
+    "signature": {
+      "depletion": 0.4,
+      "stagnation": 0.6,
+      "creative_suppression": 0.4,
+      "constraint_level": 0.5,
+      "identity_fragmentation": 0.4,
+      "meaning_deficit": 0.6,
+      "financial_pressure": 0.5,
+      "change_readiness": 0.4,
+      "autonomy_frustration": 0.9,
+      "values_conflict": 0.3,
+      "network_disruption": 0.1,
+      "ambition_deferral": 0.7
+    },
+    "related_archetypes": ["CP", "PCT", "CE"],
+    "trajectory_ids": ["RE-01", "RE-02", "RE-03", "RE-04", "RE-05"],
+    "common_triggers": [
+      "Redundancy package as external permission",
+      "Competitor overtakes while they hesitated",
+      "Partner names the pattern directly",
+      "Promotion rejection removes the last reason to stay"
+    ],
+    "common_paths": [
+      { "label": "Full freelance / solo practice", "base_rate": 0.36 },
+      { "label": "Part-time bridge then full exit", "base_rate": 0.28 },
+      { "label": "Product or SaaS business", "base_rate": 0.18 },
+      { "label": "Consulting practice", "base_rate": 0.12 },
+      { "label": "Returns to employment", "base_rate": 0.06 }
+    ],
+    "median_regret": 1.9,
+    "median_recovery_years": 1.4
+  },
+  {
+    "id": "RO",
+    "slug": "responsibility-overload",
+    "name": "Responsibility overload",
+    "category": "Compression",
+    "short_description": "Career + children + aging parents. No bandwidth for self-direction.",
+    "long_description": "Every available hour is allocated to someone else's need. Work, children, aging or unwell parents, partner's career constraints. There is no time left for deliberate self-direction, professional development, or personal projects. This is not a character failure. It is a structural condition — a temporary or extended period where external obligations exceed available capacity. The path forward is not escape; it is redistribution.",
+    "editorial_note": "The problem is almost never solved by exit — it is solved by redistribution. People in this archetype rarely have the option to leave their responsibilities. The trajectory is about reclaiming bandwidth, not escaping the situation.",
+    "signature": {
+      "depletion": 0.7,
+      "stagnation": 0.6,
+      "creative_suppression": 0.5,
+      "constraint_level": 0.95,
+      "identity_fragmentation": 0.6,
+      "meaning_deficit": 0.5,
+      "financial_pressure": 0.6,
+      "change_readiness": 0.3,
+      "autonomy_frustration": 0.6,
+      "values_conflict": 0.2,
+      "network_disruption": 0.2,
+      "ambition_deferral": 0.7
+    },
+    "related_archetypes": ["BOA", "SBM", "DA"],
+    "trajectory_ids": ["RO-01", "RO-02", "RO-03", "RO-04", "RO-05"],
+    "common_triggers": [
+      "Health event in self or family member",
+      "Child reflects absence back",
+      "Physical collapse from exhaustion",
+      "Discovery of unclaimed support entitlements"
+    ],
+    "common_paths": [
+      { "label": "Flexible / remote renegotiation", "base_rate": 0.32 },
+      { "label": "Redistribute care with external support", "base_rate": 0.27 },
+      { "label": "Part-time restructure", "base_rate": 0.21 },
+      { "label": "Role change for better fit", "base_rate": 0.13 },
+      { "label": "Full career pause then return", "base_rate": 0.07 }
+    ],
+    "median_regret": 1.7,
+    "median_recovery_years": 2.0
+  },
+  {
+    "id": "PCT",
+    "slug": "portfolio-career-transition",
+    "name": "Portfolio career transition",
+    "category": "Diversification",
+    "short_description": "Moving from single employer to multiple income streams. High uncertainty.",
+    "long_description": "You are moving — or want to move — from a single full-time employer to a portfolio of activities: freelance work, advisory roles, teaching, content, products, or consulting. The income is more variable. The autonomy is significantly higher. The transition is rarely a clean leap — it is almost always a gradual accumulation of parallel streams built while still employed, until the balance tips.",
+    "editorial_note": "The portfolio rarely starts from scratch — the components already exist in latent or informal form. The transition is about formalizing, monetizing, and rebalancing what is already there, not inventing something new.",
+    "signature": {
+      "depletion": 0.3,
+      "stagnation": 0.5,
+      "creative_suppression": 0.4,
+      "constraint_level": 0.3,
+      "identity_fragmentation": 0.5,
+      "meaning_deficit": 0.5,
+      "financial_pressure": 0.4,
+      "change_readiness": 0.7,
+      "autonomy_frustration": 0.8,
+      "values_conflict": 0.2,
+      "network_disruption": 0.2,
+      "ambition_deferral": 0.4
+    },
+    "related_archetypes": ["RE", "CP", "LCA"],
+    "trajectory_ids": ["PCT-01", "PCT-02", "PCT-03", "PCT-04", "PCT-05"],
+    "common_triggers": [
+      "Acquisition or restructuring removes stability illusion",
+      "Side income reaches meaningful threshold",
+      "Unsolicited board or advisory invitation",
+      "Part-time arrangement becomes possible"
+    ],
+    "common_paths": [
+      { "label": "Freelance + newsletter / content", "base_rate": 0.29 },
+      { "label": "Consulting + advisory board", "base_rate": 0.26 },
+      { "label": "Teaching + consulting", "base_rate": 0.20 },
+      { "label": "Product + service hybrid", "base_rate": 0.15 },
+      { "label": "Returns to single employer", "base_rate": 0.10 }
+    ],
+    "median_regret": 1.3,
+    "median_recovery_years": 1.9
+  },
+  {
+    "id": "ISG",
+    "slug": "identity-skill-gap",
+    "name": "Identity–skill gap",
+    "category": "Mismatch",
+    "short_description": "Self-image hasn't caught up to actual skills, or vice versa. Chronic underselling or overreach.",
+    "long_description": "There is a persistent gap between how you see yourself professionally and what your skills and experience actually support. This manifests in two directions: chronic underselling — consistently declining opportunities you are qualified for, attributing others' positive assessments to politeness — or overreach, taking on roles before the skills are developed and experiencing visible failures. Both patterns are about the same underlying mismatch.",
+    "editorial_note": "Two distinct sub-types: chronic undersellers who keep the gap open by refusing opportunities, and overreachers who close the gap the hard way through a visible failure that clarifies what actually needs developing. Both resolve — differently paced, different emotional texture.",
+    "signature": {
+      "depletion": 0.2,
+      "stagnation": 0.6,
+      "creative_suppression": 0.3,
+      "constraint_level": 0.2,
+      "identity_fragmentation": 0.9,
+      "meaning_deficit": 0.4,
+      "financial_pressure": 0.3,
+      "change_readiness": 0.4,
+      "autonomy_frustration": 0.5,
+      "values_conflict": 0.2,
+      "network_disruption": 0.2,
+      "ambition_deferral": 0.6
+    },
+    "related_archetypes": ["CP", "DA", "LCA"],
+    "trajectory_ids": ["ISG-01", "ISG-02", "ISG-03", "ISG-04", "ISG-05"],
+    "common_triggers": [
+      "External candidate hired for role they were next for",
+      "Forced to onboard someone less qualified",
+      "Visible failure forces skill audit",
+      "Student or junior reflects capability back"
+    ],
+    "common_paths": [
+      { "label": "Apply for and accept next level role", "base_rate": 0.38 },
+      { "label": "Reposition professional identity", "base_rate": 0.26 },
+      { "label": "Step back then rebuild correctly", "base_rate": 0.18 },
+      { "label": "Integrate split identities", "base_rate": 0.12 },
+      { "label": "Retrain to close real gap", "base_rate": 0.06 }
+    ],
+    "median_regret": 2.8,
+    "median_recovery_years": 2.2
+  },
+  {
+    "id": "DA",
+    "slug": "delayed-ambition",
+    "name": "Delayed ambition",
+    "category": "Deferral",
+    "short_description": "Spent 20s–30s building security. Now wants more. Frustrated by lost time.",
+    "long_description": "You knew what you wanted and chose something else first — stability, family, practical income, parental expectation. The ambition was deferred, not abandoned. It is present now with added urgency because you are aware of the time that has passed. The frustration is specific: not that you made the wrong choice, but that the right choice has been waiting this long.",
+    "editorial_note": "The emotional signature of this archetype is distinct from all others: it is the only one where regret is consistently higher — not for the change, but for the delay. High regret here means the change was right, not wrong.",
+    "signature": {
+      "depletion": 0.4,
+      "stagnation": 0.6,
+      "creative_suppression": 0.6,
+      "constraint_level": 0.4,
+      "identity_fragmentation": 0.7,
+      "meaning_deficit": 0.7,
+      "financial_pressure": 0.3,
+      "change_readiness": 0.6,
+      "autonomy_frustration": 0.5,
+      "values_conflict": 0.3,
+      "network_disruption": 0.1,
+      "ambition_deferral": 0.95
+    },
+    "related_archetypes": ["LCA", "SBM", "RO"],
+    "trajectory_ids": ["DA-01", "DA-02", "DA-03", "DA-04", "DA-05"],
+    "common_triggers": [
+      "Child pursues the deferred path",
+      "Accidental external validation of dormant skill",
+      "Milestone birthday",
+      "Parent's death removes vicarious obligation"
+    ],
+    "common_paths": [
+      { "label": "Part-time retraining alongside job", "base_rate": 0.35 },
+      { "label": "Adjacent pivot using existing base", "base_rate": 0.28 },
+      { "label": "Full retraining program", "base_rate": 0.20 },
+      { "label": "Voluntary sector entry point", "base_rate": 0.10 },
+      { "label": "Portfolio including deferred interest", "base_rate": 0.07 }
+    ],
+    "median_regret": 2.9,
+    "median_recovery_years": 3.1
+  },
+  {
+    "id": "SC",
+    "slug": "specialist-ceiling",
+    "name": "Specialist ceiling",
+    "category": "Constraint",
+    "short_description": "Deep expert in a narrow field. Domain shrinking, demand uncertain, hard to pivot.",
+    "long_description": "You have spent years or decades developing deep expertise in a specific domain. That domain is now contracting, automating, or losing market value. The depth of your expertise is the asset and the constraint simultaneously — you know more than almost anyone about something the world needs less of, and moving laterally feels like starting over. It is not starting over. The expertise has produced byproducts that are transferable.",
+    "editorial_note": "The specialist ceiling is almost never solved by going deeper into the specialism. It is solved by identifying what the specialism has produced as a byproduct: regulatory knowledge, transition expertise, quality judgement, repositioning credibility. The knowledge base stays; the offer changes.",
+    "signature": {
+      "depletion": 0.3,
+      "stagnation": 0.7,
+      "creative_suppression": 0.3,
+      "constraint_level": 0.6,
+      "identity_fragmentation": 0.5,
+      "meaning_deficit": 0.4,
+      "financial_pressure": 0.7,
+      "change_readiness": 0.4,
+      "autonomy_frustration": 0.4,
+      "values_conflict": 0.2,
+      "network_disruption": 0.3,
+      "ambition_deferral": 0.3
+    },
+    "related_archetypes": ["CP", "LRP", "ISG"],
+    "trajectory_ids": ["SC-01", "SC-02", "SC-03", "SC-04", "SC-05"],
+    "common_triggers": [
+      "Major client or employer exits the domain",
+      "Technology deprecates the specialism",
+      "Industry restructuring removes role category",
+      "Asked to present on transition — realises the analysis is the skill"
+    ],
+    "common_paths": [
+      { "label": "Reframe expertise as adjacent offer", "base_rate": 0.34 },
+      { "label": "Move to regulation / quality / oversight", "base_rate": 0.24 },
+      { "label": "Transition consulting in same domain", "base_rate": 0.19 },
+      { "label": "Full retraining", "base_rate": 0.14 },
+      { "label": "Teaching / knowledge transfer", "base_rate": 0.09 }
+    ],
+    "median_regret": 1.8,
+    "median_recovery_years": 2.3
+  },
+  {
+    "id": "VR",
+    "slug": "values-rupture",
+    "name": "Values rupture",
+    "category": "Alignment",
+    "short_description": "Career is successful by external measures but conflicts with core values. Growing tension.",
+    "long_description": "The work requires you to produce outcomes, defend positions, or participate in systems that conflict with what you believe. The conflict has been accumulating for years through small compromises that were individually manageable. The tension is now significant enough that the work costs you more than income — it costs you something about how you see yourself.",
+    "editorial_note": "The values rupture is rarely sudden. It accumulates over years of small compromises. The trigger is not the first moment of misalignment but the moment the accumulated weight becomes impossible to rationalize. The slow-build pattern distinguishes this from an impulsive ethical objection.",
+    "signature": {
+      "depletion": 0.5,
+      "stagnation": 0.3,
+      "creative_suppression": 0.2,
+      "constraint_level": 0.3,
+      "identity_fragmentation": 0.6,
+      "meaning_deficit": 0.7,
+      "financial_pressure": 0.3,
+      "change_readiness": 0.5,
+      "autonomy_frustration": 0.4,
+      "values_conflict": 0.95,
+      "network_disruption": 0.2,
+      "ambition_deferral": 0.2
+    },
+    "related_archetypes": ["BOA", "CE", "SBM"],
+    "trajectory_ids": ["VR-01", "VR-02", "VR-03", "VR-04", "VR-05"],
+    "common_triggers": [
+      "Child asks a direct question about the work",
+      "Forced to sign off on decision they consider wrong",
+      "Junior colleague asks whether this is good work",
+      "Media or public event makes private concern public"
+    ],
+    "common_paths": [
+      { "label": "Mission-aligned sector or org", "base_rate": 0.38 },
+      { "label": "Regulatory or oversight role", "base_rate": 0.22 },
+      { "label": "Independent with client selection", "base_rate": 0.19 },
+      { "label": "Adjacent role same org different mandate", "base_rate": 0.13 },
+      { "label": "Extended gap then values-led rebuild", "base_rate": 0.08 }
+    ],
+    "median_regret": 1.6,
+    "median_recovery_years": 1.8
+  },
+  {
+    "id": "PSV",
+    "slug": "post-success-vacuum",
+    "name": "Post-success vacuum",
+    "category": "Aftermath",
+    "short_description": "Achieved the goal. Felt nothing. No next objective. Common after major exits or milestones.",
+    "long_description": "You achieved something significant — a business exit, a career pinnacle, a long-pursued goal — and the feeling on arrival was not what you expected. The vacuum that follows is not depression and not failure. It is the absence of the organizing structure that the pursuit provided. The goal was doing more work than you realised: it was providing direction, identity, and daily purpose. Without it, those things need to be rebuilt from a different foundation.",
+    "editorial_note": "The vacuum arrives not from failure but from the successful completion of something that had been the organizing structure of professional identity. The resolution involves identifying what specifically was valued within the achievement — not recreating the achievement itself.",
+    "signature": {
+      "depletion": 0.5,
+      "stagnation": 0.6,
+      "creative_suppression": 0.3,
+      "constraint_level": 0.1,
+      "identity_fragmentation": 0.9,
+      "meaning_deficit": 0.9,
+      "financial_pressure": 0.1,
+      "change_readiness": 0.5,
+      "autonomy_frustration": 0.3,
+      "values_conflict": 0.2,
+      "network_disruption": 0.3,
+      "ambition_deferral": 0.2
+    },
+    "related_archetypes": ["CE", "LRP", "SBM"],
+    "trajectory_ids": ["PSV-01", "PSV-02", "PSV-03", "PSV-04", "PSV-05"],
+    "common_triggers": [
+      "Asked to describe next goal — no answer comes",
+      "Speaking about the achievement feels like describing someone else",
+      "Unexpected relief when something ends",
+      "Observer reflects the lightness they lack"
+    ],
+    "common_paths": [
+      { "label": "Identify specific valued component, rebuild around it", "base_rate": 0.35 },
+      { "label": "Deliberate exploratory period", "base_rate": 0.28 },
+      { "label": "Advisory or investing role", "base_rate": 0.18 },
+      { "label": "Teaching or mentoring", "base_rate": 0.12 },
+      { "label": "Sector or domain change", "base_rate": 0.07 }
+    ],
+    "median_regret": 1.1,
+    "median_recovery_years": 2.0
+  },
+  {
+    "id": "GD",
+    "slug": "geographic-displacement",
+    "name": "Geographic displacement",
+    "category": "Dislocation",
+    "short_description": "Relocated for partner, employer, or lifestyle. Professional network reset. Struggling to rebuild.",
+    "long_description": "You have relocated — for a partner's career, an employer posting, a lifestyle choice, or a combination — and your professional network, local reputation, and informal standing did not transfer with you. You may be senior in experience and invisible in the new market. The qualification recognition, cultural navigation, and relationship-building required to rebuild is a distinct project that is routinely underestimated.",
+    "editorial_note": "Geographic displacement is almost never regretted as a life decision. The regret is consistently about underestimating specific practical consequences that could have been researched in advance. The move itself is rarely the mistake. The mistake is treating the professional rebuild as automatic.",
+    "signature": {
+      "depletion": 0.4,
+      "stagnation": 0.5,
+      "creative_suppression": 0.2,
+      "constraint_level": 0.6,
+      "identity_fragmentation": 0.7,
+      "meaning_deficit": 0.4,
+      "financial_pressure": 0.5,
+      "change_readiness": 0.6,
+      "autonomy_frustration": 0.4,
+      "values_conflict": 0.1,
+      "network_disruption": 0.95,
+      "ambition_deferral": 0.3
+    },
+    "related_archetypes": ["CE", "ISG", "LRP"],
+    "trajectory_ids": ["GD-01", "GD-02", "GD-03", "GD-04", "GD-05"],
+    "common_triggers": [
+      "Partner career move",
+      "Employer posting",
+      "Voluntary lifestyle relocation",
+      "Redundancy in home market"
+    ],
+    "common_paths": [
+      { "label": "Target international orgs needing home market knowledge", "base_rate": 0.31 },
+      { "label": "Systematic local network rebuild", "base_rate": 0.26 },
+      { "label": "Identify unmet local need from displacement", "base_rate": 0.19 },
+      { "label": "Remote work for home market", "base_rate": 0.15 },
+      { "label": "Return to home market", "base_rate": 0.09 }
+    ],
+    "median_regret": 1.4,
+    "median_recovery_years": 2.5
+  },
+  {
+    "id": "LRP",
+    "slug": "late-reinvention-path",
+    "name": "Late reinvention path",
+    "category": "Transition",
+    "short_description": "Deliberate rebuild after 45. New domain, new identity, time pressure felt.",
+    "long_description": "You are undertaking — or preparing for — a significant professional reinvention after 45. The new direction may require retraining, re-entry at a lower level, a sustained income gap, or a status reduction before recovery. You have accepted this, or are in the process of accepting it. The time pressure is real and acknowledged. The path is longer than a lateral move and you have chosen it anyway.",
+    "editorial_note": "The distinguishing feature of this archetype: the person has accepted that the change will be uncomfortable, slow, and involve a temporary loss of status. What distinguishes them from hesitators is that acceptance. The path is the point.",
+    "signature": {
+      "depletion": 0.4,
+      "stagnation": 0.5,
+      "creative_suppression": 0.4,
+      "constraint_level": 0.4,
+      "identity_fragmentation": 0.6,
+      "meaning_deficit": 0.8,
+      "financial_pressure": 0.5,
+      "change_readiness": 0.9,
+      "autonomy_frustration": 0.5,
+      "values_conflict": 0.3,
+      "network_disruption": 0.3,
+      "ambition_deferral": 0.7
+    },
+    "related_archetypes": ["DA", "SC", "PSV"],
+    "trajectory_ids": ["LRP-01", "LRP-02", "LRP-03", "LRP-04", "LRP-05"],
+    "common_triggers": [
+      "Sector structural change makes staying untenable",
+      "Redundancy with adequate runway",
+      "External validation of readiness",
+      "Health event clarifies priorities"
+    ],
+    "common_paths": [
+      { "label": "Full retraining program", "base_rate": 0.30 },
+      { "label": "Re-entry at junior level in new field", "base_rate": 0.24 },
+      { "label": "Use existing expertise as entry to new sector", "base_rate": 0.22 },
+      { "label": "Teaching / knowledge transfer in new domain", "base_rate": 0.14 },
+      { "label": "Entrepreneurial path in new domain", "base_rate": 0.10 }
+    ],
+    "median_regret": 1.2,
+    "median_recovery_years": 3.4
+  }
+]
