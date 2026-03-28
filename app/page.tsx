@@ -17,16 +17,17 @@ export default function Home() {
         {/* Dark overlay so text stays readable */}
         <div style={{
           position: 'absolute', inset: 0,
-          background: 'linear-gradient(to right, rgba(10,14,30,0.55) 0%, rgba(10,14,30,0.1) 60%, transparent 100%)',
+          background: 'rgba(10,14,30,0.45)',
         }} />
 
-        {/* Hero text */}
+        {/* Hero text — centered */}
         <div style={{
           position: 'absolute', inset: 0, zIndex: 10,
-          display: 'flex', alignItems: 'center',
-          paddingLeft: '8%', paddingRight: '4%',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          textAlign: 'center',
+          padding: '0 6%',
         }}>
-          <div style={{ maxWidth: '540px' }}>
+          <div style={{ maxWidth: '580px' }}>
             <h1 style={{
               fontSize: 'clamp(30px, 4.5vw, 52px)',
               fontWeight: 700,
@@ -45,9 +46,10 @@ export default function Home() {
               lineHeight: 1.7,
               color: 'rgba(255,255,255,0.72)',
               marginBottom: '36px',
-              maxWidth: '360px',
+              maxWidth: '380px',
+              margin: '0 auto 36px',
             }}>
-              A diagnostic tool that maps your professional situation against<br />
+              A diagnostic tool that maps your professional situation against
               15 recognizable patterns experienced in midlife.
             </p>
 
