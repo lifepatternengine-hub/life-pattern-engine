@@ -179,7 +179,8 @@ export async function POST(req: NextRequest) {
       const primaryName = getArchetype(primary_archetype)?.name ?? primary_archetype;
 
       const { error: emailError } = await resend.emails.send({
-        from: 'Life Pattern Engine <results@lifepatternengine.com>',
+        from: 'Life Pattern Engine <onboarding@resend.dev>',
+        reply_to: 'lifepatternengine@gmail.com',
         to: email,
         subject: `Your pattern: ${primaryName}`,
         html: buildEmailHtml(primary_archetype, secondary_archetype ?? null),
