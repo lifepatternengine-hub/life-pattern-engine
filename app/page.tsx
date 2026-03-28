@@ -8,7 +8,7 @@ export default function Home() {
         {/* Hero background image */}
         <div style={{
           position: 'absolute', inset: 0,
-          backgroundImage: 'url(/hero-bg.png)',
+          backgroundImage: 'url(/mosaic.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center top',
           backgroundRepeat: 'no-repeat',
