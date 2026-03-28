@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 import { scoreResponse } from '@/lib/scoring-engine';
 import archetypes from '@/lib/archetypes.json';
 
@@ -173,24 +173,31 @@ export async function POST(req: NextRequest) {
       console.log('Saved to Supabase successfully');
     }
 
-    // Send result email via Resend
-    if (process.env.RESEND_API_KEY) {
-      const resend = new Resend(process.env.RESEND_API_KEY);
+    // Send result email via Gmail SMTP
+    if (process.env.GMAIL_APP_PASSWORD) {
       const primaryName = getArchetype(primary_archetype)?.name ?? primary_archetype;
 
-      const { error: emailError } = await resend.emails.send({
-        from: 'Life Pattern Engine <onboarding@resend.dev>',
-        reply_to: 'lifepatternengine@gmail.com',
-        to: email,
-        subject: `Your pattern: ${primaryName}`,
-        html: buildEmailHtml(primary_archetype, secondary_archetype ?? null),
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'lifepatternengine@gmail.com',
+          pass: process.env.GMAIL_APP_PASSWORD,
+        },
       });
 
-      if (emailError) {
-        console.error('Resend error:', emailError);
-      } else {
+      try {
+        await transporter.sendMail({
+          from: '"Life Pattern Engine" <lifepatternengine@gmail.com>',
+          to: email,
+          subject: `Your pattern: ${primaryName}`,
+          html: buildEmailHtml(primary_archetype, secondary_archetype ?? null),
+        });
         console.log('Result email sent to', email);
+      } catch (emailError) {
+        console.error('Gmail SMTP error:', emailError);
       }
+    } else {
+      console.warn('GMAIL_APP_PASSWORD not set — email not sent');
     }
 
     // Redirect to Thank You page
