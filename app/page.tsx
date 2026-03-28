@@ -77,29 +77,30 @@ export default function Home() {
       </section>
 
       {/* ── ABOUT ── */}
-      <section style={{ backgroundColor: '#0d1220', padding: '80px 8%' }}>
-        <div style={{ maxWidth: '600px' }}>
+      <section style={{ backgroundColor: '#0d1220', padding: '72px 8% 64px' }}>
+        <div style={{ maxWidth: '520px' }}>
           <h2 style={{
-            fontSize: 'clamp(40px, 7vw, 72px)',
+            fontSize: 'clamp(52px, 9vw, 88px)',
             fontWeight: 700,
-            color: 'rgba(255,255,255,0.45)',
-            marginBottom: '40px',
+            color: 'rgba(255,255,255,0.38)',
+            marginBottom: '24px',
             fontFamily: '"Inria Serif", Georgia, serif',
+            lineHeight: 1,
           }}>
             About
           </h2>
 
-          <div style={{ fontSize: '14px', lineHeight: 1.85, color: 'rgba(255,255,255,0.55)' }}>
-            <p style={{ marginBottom: '18px' }}>
+          <div style={{ fontSize: '12.5px', lineHeight: 1.75, color: 'rgba(255,255,255,0.52)' }}>
+            <p style={{ marginBottom: '12px' }}>
               Feeling stuck or lost professionally is not unique — it follows patterns. The Life Pattern Engine is built on the observation that midlife professional transitions cluster around specific, recognizable configurations.
             </p>
-            <p style={{ marginBottom: '18px' }}>
+            <p style={{ marginBottom: '12px' }}>
               Rather than treating career uncertainty as a formless crisis, this tool identifies the underlying structure. Once visible, paths forward become clearer.
             </p>
-            <p style={{ marginBottom: '18px' }}>
+            <p style={{ marginBottom: '12px' }}>
               The framework emerged from analyzing recurring themes in professional transitions: value conflicts, identity shifts, skill-market mismatches, creative reawakenings, and structural constraints.
             </p>
-            <p style={{ marginBottom: '18px' }}>
+            <p style={{ marginBottom: '12px' }}>
               These aren&apos;t abstract concepts — they&apos;re lived experiences that appear in predictable combinations.
             </p>
             <p>
@@ -110,14 +111,15 @@ export default function Home() {
       </section>
 
       {/* ── HOW IT WORKS ── */}
-      <section style={{ backgroundColor: '#0d1220', padding: '0 8% 100px' }}>
-        <div style={{ maxWidth: '600px' }}>
+      <section style={{ backgroundColor: '#0d1220', padding: '16px 8% 100px' }}>
+        <div style={{ maxWidth: '520px' }}>
           <h2 style={{
-            fontSize: 'clamp(28px, 5vw, 52px)',
+            fontSize: 'clamp(36px, 6vw, 60px)',
             fontWeight: 700,
-            color: 'rgba(255,255,255,0.45)',
-            marginBottom: '60px',
+            color: 'rgba(255,255,255,0.38)',
+            marginBottom: '48px',
             fontFamily: '"Inria Serif", Georgia, serif',
+            lineHeight: 1,
           }}>
             How it works
           </h2>
@@ -139,28 +141,28 @@ export default function Home() {
               body: "You receive a detailed breakdown of your dominant pattern (or patterns, if you're in a hybrid state). The result page includes trajectory stories — real scenarios showing how others in the same pattern have navigated forward. Not advice. Just visibility.",
             },
           ].map(({ num, label, body }) => (
-            <div key={num} style={{ marginBottom: '60px' }}>
+            <div key={num} style={{ marginBottom: '52px' }}>
               <p style={{
-                fontSize: 'clamp(40px, 7vw, 72px)',
+                fontSize: 'clamp(64px, 12vw, 100px)',
                 fontWeight: 700,
-                color: 'rgba(255,255,255,0.22)',
-                lineHeight: 1,
-                marginBottom: '8px',
+                color: 'rgba(255,255,255,0.18)',
+                lineHeight: 0.9,
+                marginBottom: '10px',
                 fontFamily: '"Inria Serif", Georgia, serif',
               }}>{num}</p>
               <p style={{
-                fontSize: '11px',
-                letterSpacing: '2px',
+                fontSize: '10px',
+                letterSpacing: '2.5px',
                 textTransform: 'uppercase',
-                color: 'rgba(255,255,255,0.45)',
-                marginBottom: '14px',
+                color: 'rgba(255,255,255,0.42)',
+                marginBottom: '10px',
                 fontWeight: 600,
               }}>{label}</p>
               <p style={{
-                fontSize: '14px',
-                lineHeight: 1.8,
-                color: 'rgba(255,255,255,0.5)',
-                maxWidth: '480px',
+                fontSize: '12.5px',
+                lineHeight: 1.75,
+                color: 'rgba(255,255,255,0.48)',
+                maxWidth: '440px',
               }}>{body}</p>
             </div>
           ))}
