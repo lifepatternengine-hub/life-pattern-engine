@@ -29,7 +29,7 @@ export default function Home() {
         }}>
           <div style={{ maxWidth: '580px' }}>
             <h1 style={{
-              fontSize: 'clamp(30px, 4.5vw, 52px)',
+              fontSize: 'clamp(38px, 5.6vw, 65px)',
               fontWeight: 700,
               lineHeight: 1.15,
               marginBottom: '20px',
