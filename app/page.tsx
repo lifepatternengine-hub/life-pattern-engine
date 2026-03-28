@@ -5,42 +5,20 @@ export default function Home() {
       {/* ── HERO ── */}
       <section style={{ position: 'relative', overflow: 'hidden', height: '480px' }}>
 
-        {/* Background: left dark navy, right warm/red abstract */}
+        {/* Hero background image */}
         <div style={{
           position: 'absolute', inset: 0,
-          display: 'grid', gridTemplateColumns: '55% 45%',
-        }}>
-          <div style={{
-            background: 'linear-gradient(135deg, #1a0a2e 0%, #0d1220 50%, #0b0f1a 100%)',
-          }} />
-          <div style={{
-            background: 'linear-gradient(135deg, #3d1500 0%, #7a2000 25%, #b83200 50%, #d44020 70%, #c8a090 90%)',
-          }} />
-        </div>
-
-        {/* Subtle grid texture */}
-        <div style={{
-          position: 'absolute', inset: 0,
-          backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)
-          `,
-          backgroundSize: '56px 56px',
+          backgroundImage: 'url(/hero-bg.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center top',
+          backgroundRepeat: 'no-repeat',
         }} />
 
-        {/* Wavy divider between the two halves */}
-        <svg
-          style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', height: '100%', width: '120px', overflow: 'visible', zIndex: 2 }}
-          viewBox="0 0 120 480"
-          preserveAspectRatio="none"
-        >
-          <path d="M60,0 C30,120 90,240 50,360 C30,420 55,460 60,480" stroke="rgba(0,0,0,0.5)" strokeWidth="1.5" fill="none" />
-        </svg>
-
-        {/* Corner plus marks */}
-        <span style={{ position: 'absolute', top: 30, left: 30, fontSize: 20, color: 'rgba(255,255,255,0.35)', lineHeight: 1, zIndex: 5 }}>+</span>
-        <span style={{ position: 'absolute', top: 82, left: 72, fontSize: 16, color: 'rgba(255,255,255,0.2)', lineHeight: 1, zIndex: 5 }}>+</span>
-        <span style={{ position: 'absolute', bottom: 44, right: 44, fontSize: 24, color: 'rgba(255,255,255,0.3)', lineHeight: 1, zIndex: 5 }}>+</span>
+        {/* Dark overlay so text stays readable */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(to right, rgba(10,14,30,0.55) 0%, rgba(10,14,30,0.1) 60%, transparent 100%)',
+        }} />
 
         {/* Hero text */}
         <div style={{
