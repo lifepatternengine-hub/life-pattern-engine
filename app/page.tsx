@@ -114,7 +114,7 @@ export default function Home() {
       <section style={{ backgroundColor: '#0d1220', padding: '16px 8% 100px' }}>
         <div style={{ maxWidth: '520px' }}>
           <h2 style={{
-            fontSize: 'clamp(36px, 6vw, 60px)',
+            fontSize: 'clamp(29px, 4.8vw, 48px)',
             fontWeight: 700,
             color: 'rgba(255,255,255,0.38)',
             marginBottom: '48px',
