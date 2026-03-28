@@ -38,7 +38,7 @@ export default function Home() {
               letterSpacing: '-0.3px',
             }}>
               You are not lost,<br />
-              you are in a pattern.
+              <span style={{ whiteSpace: 'nowrap' }}>you are in a pattern.</span>
             </h1>
 
             <p style={{
