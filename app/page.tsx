@@ -33,7 +33,7 @@ export default function Home() {
               fontWeight: 700,
               lineHeight: 1.15,
               marginBottom: '20px',
-              fontFamily: 'Georgia, "Times New Roman", serif',
+              fontFamily: ''Inria Serif', Georgia, serif',
               color: '#ffffff',
               letterSpacing: '-0.3px',
             }}>
@@ -84,7 +84,7 @@ export default function Home() {
             fontWeight: 700,
             color: 'rgba(255,255,255,0.45)',
             marginBottom: '40px',
-            fontFamily: 'Georgia, "Times New Roman", serif',
+            fontFamily: ''Inria Serif', Georgia, serif',
           }}>
             About
           </h2>
@@ -117,7 +117,7 @@ export default function Home() {
             fontWeight: 700,
             color: 'rgba(255,255,255,0.45)',
             marginBottom: '60px',
-            fontFamily: 'Georgia, "Times New Roman", serif',
+            fontFamily: ''Inria Serif', Georgia, serif',
           }}>
             How it works
           </h2>
@@ -146,7 +146,7 @@ export default function Home() {
                 color: 'rgba(255,255,255,0.22)',
                 lineHeight: 1,
                 marginBottom: '8px',
-                fontFamily: 'Georgia, "Times New Roman", serif',
+                fontFamily: ''Inria Serif', Georgia, serif',
               }}>{num}</p>
               <p style={{
                 fontSize: '11px',
