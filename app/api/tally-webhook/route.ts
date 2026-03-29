@@ -153,7 +153,7 @@ export async function POST(req: NextRequest) {
     // Save to Supabase
     const supabase = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_ANON_KEY!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     );
 
     const { error: saveError } = await supabase.from('responses').insert({
