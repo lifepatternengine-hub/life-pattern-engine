@@ -151,9 +151,11 @@ export async function POST(req: NextRequest) {
     console.log('Scoring result:', { primary_archetype, secondary_archetype, confidence });
 
     // Save to Supabase
+    const supabaseKey = process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    console.log('Supabase key source:', process.env.SUPABASE_ANON_KEY ? 'SUPABASE_ANON_KEY' : 'NEXT_PUBLIC_SUPABASE_ANON_KEY', '| defined:', !!supabaseKey);
     const supabase = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      supabaseKey!,
     );
 
     const { error: saveError } = await supabase.from('responses').insert({
