@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { archetypeNames } from '@/lib/scoring';
 
 const archetypeLinks: Record<string, string> = {
@@ -21,10 +22,25 @@ const archetypeLinks: Record<string, string> = {
   LRP: 'https://subdued-castanet-545.notion.site/LRP-Late-Reinvention-Path-324a21b2a01b8087803afa0de4b32df1',
 };
 
-const font = '"Inria Serif", Georgia, serif';
+const serif = '"Inria Serif", Georgia, serif';
+const sans  = '"Inter", system-ui, -apple-system, sans-serif';
+
+/* ── archetype hero panels (gradient placeholders) ── */
+const archetypePanels: Record<string, [string, string, string]> = {
+  BOA: ['linear-gradient(160deg,#5a1010 0%,#3d0a0a 100%)', 'linear-gradient(160deg,#4a1060 0%,#9333ea 50%,#c026d3 100%)', 'linear-gradient(160deg,#8b1a1a 0%,#dc2626 60%,#f97316 100%)'],
+  SBM: ['linear-gradient(160deg,#1a2a1a 0%,#0f1f0f 100%)', 'linear-gradient(160deg,#1a3a2a 0%,#166534 50%,#15803d 100%)', 'linear-gradient(160deg,#2a3a1a 0%,#3f6212 60%,#65a30d 100%)'],
+  LCA: ['linear-gradient(160deg,#1a1a3a 0%,#0f0f2a 100%)', 'linear-gradient(160deg,#2a1a4a 0%,#7c3aed 50%,#a855f7 100%)', 'linear-gradient(160deg,#1a2a4a 0%,#1d4ed8 60%,#3b82f6 100%)'],
+  CE:  ['linear-gradient(160deg,#2a1a0a 0%,#1a0f00 100%)', 'linear-gradient(160deg,#3a2a0a 0%,#92400e 50%,#d97706 100%)', 'linear-gradient(160deg,#3a1a0a 0%,#b45309 60%,#f59e0b 100%)'],
+  default: ['linear-gradient(160deg,#1a1a2a 0%,#0f0f1a 100%)', 'linear-gradient(160deg,#2a1a3a 0%,#6d28d9 50%,#7c3aed 100%)', 'linear-gradient(160deg,#1a2a3a 0%,#1e40af 60%,#3b82f6 100%)'],
+};
+
+function getPanels(code: string): [string, string, string] {
+  return archetypePanels[code] ?? archetypePanels.default;
+}
 
 export default function ResultPage({ params }: { params: { id: string } }) {
   const { id } = params;
+  const router = useRouter();
   const [result, setResult]   = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError]     = useState<string | null>(null);
@@ -44,120 +60,149 @@ export default function ResultPage({ params }: { params: { id: string } }) {
     load();
   }, [id]);
 
-  /* ── shared shell ── */
-  const Shell = ({ children }: { children: React.ReactNode }) => (
-    <main style={{ backgroundColor: '#0b0f1a', minHeight: '100vh', color: '#fff', fontFamily: font, display: 'flex', flexDirection: 'column' }}>
-      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '80px 8%' }}>
-        <div style={{ maxWidth: '620px', width: '100%' }}>{children}</div>
-      </div>
-      <footer style={{ padding: '22px 8%', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-        <p style={{ fontSize: '10px', color: 'rgba(255,255,255,0.22)', letterSpacing: '1.5px', textTransform: 'uppercase' }}>
-          2026 copyright LIFE PATTERN ENGINE
-        </p>
-      </footer>
+  /* ── loading ── */
+  if (loading) return (
+    <main style={{ backgroundColor: '#0b1428', minHeight: '100vh', color: '#fff', fontFamily: serif, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', letterSpacing: '3px', textTransform: 'uppercase' }}>
+        Mapping your pattern…
+      </p>
     </main>
   );
 
-  if (loading) return (
-    <Shell>
-      <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.4)', letterSpacing: '2px', textTransform: 'uppercase' }}>
-        Mapping your pattern…
-      </p>
-    </Shell>
-  );
-
+  /* ── error ── */
   if (error || !result) return (
-    <Shell>
-      <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.4)', marginBottom: '32px' }}>
-        {error ?? 'Result not found'}
-      </p>
-      <a href="/" style={{ fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', textDecoration: 'none' }}>
-        ← Back to home
-      </a>
-    </Shell>
-  );
-
-  const pCode = result.primary_archetype;
-  const sCode = result.secondary_archetype;
-  const pName = archetypeNames[pCode as keyof typeof archetypeNames] ?? pCode;
-  const sName = sCode ? (archetypeNames[sCode as keyof typeof archetypeNames] ?? sCode) : null;
-
-  return (
-    <Shell>
-      {/* label */}
-      <p style={{ fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.32)', marginBottom: '32px' }}>
-        Your pattern
-      </p>
-
-      {/* primary */}
-      <div style={{ marginBottom: '48px' }}>
-        <p style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.38)', marginBottom: '10px' }}>
-          Primary archetype
+    <main style={{ backgroundColor: '#0b1428', minHeight: '100vh', color: '#fff', fontFamily: serif, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ textAlign: 'center' }}>
+        <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.4)', marginBottom: '32px' }}>
+          {error ?? 'Result not found'}
         </p>
-        <h1 style={{ fontSize: 'clamp(28px, 5vw, 44px)', fontWeight: 700, lineHeight: 1.15, marginBottom: '6px' }}>
-          {pCode}
-        </h1>
-        <p style={{ fontSize: 'clamp(18px, 3vw, 26px)', fontWeight: 400, color: 'rgba(255,255,255,0.7)', marginBottom: '28px' }}>
-          {pName}
-        </p>
-        <a
-          href={archetypeLinks[pCode]}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: 'inline-block', padding: '11px 26px',
-            border: '1px solid rgba(255,255,255,0.65)',
-            color: '#fff', fontSize: '11px', letterSpacing: '2.5px',
-            textTransform: 'uppercase', fontWeight: 500,
-            backgroundColor: 'transparent', textDecoration: 'none', fontFamily: font,
-          }}
-        >
-          View full profile →
-        </a>
-      </div>
-
-      {/* secondary */}
-      {sCode && sName && (
-        <div style={{ paddingTop: '40px', borderTop: '1px solid rgba(255,255,255,0.08)', marginBottom: '48px' }}>
-          <p style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.32)', marginBottom: '10px' }}>
-            Secondary archetype
-          </p>
-          <h2 style={{ fontSize: 'clamp(20px, 3.5vw, 32px)', fontWeight: 700, lineHeight: 1.2, marginBottom: '6px' }}>
-            {sCode}
-          </h2>
-          <p style={{ fontSize: 'clamp(15px, 2.5vw, 20px)', fontWeight: 400, color: 'rgba(255,255,255,0.55)', marginBottom: '28px' }}>
-            {sName}
-          </p>
-          <a
-            href={archetypeLinks[sCode]}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: 'inline-block', padding: '11px 26px',
-              border: '1px solid rgba(255,255,255,0.3)',
-              color: 'rgba(255,255,255,0.6)', fontSize: '11px', letterSpacing: '2.5px',
-              textTransform: 'uppercase', fontWeight: 500,
-              backgroundColor: 'transparent', textDecoration: 'none', fontFamily: font,
-            }}
-          >
-            View secondary profile →
-          </a>
-        </div>
-      )}
-
-      {/* note */}
-      <div style={{ paddingTop: '40px', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-        <p style={{ fontSize: '13px', lineHeight: 1.8, color: 'rgba(255,255,255,0.38)' }}>
-          This is a diagnostic result — a map of where you are, not instructions for where to go.
-          A full breakdown has been sent to your email.
-        </p>
-      </div>
-
-      <div style={{ marginTop: '52px' }}>
-        <a href="/" style={{ fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', textDecoration: 'none' }}>
+        <a href="/" style={{ fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}>
           ← Back to home
         </a>
       </div>
-    </Shell>
+    </main>
+  );
+
+  const pCode  = result.primary_archetype;
+  const pName  = archetypeNames[pCode as keyof typeof archetypeNames] ?? pCode;
+  const panels = getPanels(pCode);
+
+  return (
+    <main style={{ fontFamily: serif, color: '#fff' }}>
+
+      {/* ══════════════════════════════════════════
+          TOP SECTION — dark navy
+      ══════════════════════════════════════════ */}
+      <section style={{ backgroundColor: '#0b1428' }}>
+
+        {/* hero image panels */}
+        <div style={{ display: 'flex', height: 'clamp(200px, 28vw, 320px)', gap: '2px' }}>
+          <div style={{ flex: 1, background: panels[0] }} />
+          <div style={{ flex: 1, background: panels[1] }} />
+          <div style={{ flex: 1, background: panels[2] }} />
+        </div>
+
+        {/* archetype content */}
+        <div style={{ padding: 'clamp(40px, 6vw, 64px) clamp(24px, 8%, 120px)' }}>
+          <p style={{ fontSize: '10px', letterSpacing: '3.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.28)', marginBottom: '24px', fontFamily: sans }}>
+            Your pattern
+          </p>
+
+          <p style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: '12px', fontFamily: sans }}>
+            Primary archetype
+          </p>
+
+          <h1 style={{ fontSize: 'clamp(48px, 7vw, 80px)', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-1px', marginBottom: '8px' }}>
+            {pCode}
+          </h1>
+
+          <p style={{ fontSize: 'clamp(18px, 2.8vw, 26px)', fontWeight: 400, color: 'rgba(255,255,255,0.85)', marginBottom: '32px' }}>
+            {pName}
+          </p>
+
+          <a
+            href={archetypeLinks[pCode]}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-block',
+              padding: '11px 24px',
+              border: '1px solid rgba(255,255,255,0.6)',
+              color: '#fff',
+              fontSize: '11px',
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
+              fontWeight: 500,
+              fontFamily: sans,
+              backgroundColor: 'transparent',
+              textDecoration: 'none',
+              cursor: 'pointer',
+            }}
+          >
+            View full profile →
+          </a>
+
+          <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', marginTop: '48px', paddingTop: '32px' }}>
+            <p style={{ fontSize: '12px', lineHeight: 1.85, color: 'rgba(255,255,255,0.35)', maxWidth: '560px', fontFamily: sans }}>
+              This is a diagnostic result — a map of where you are, not instructions for where to go.
+              A full breakdown has been sent to your email.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          BOTTOM SECTION — paywall / upsell
+      ══════════════════════════════════════════ */}
+      <section style={{ background: 'linear-gradient(180deg, #1e2d4a 0%, #2c3d5c 40%, #3a4d6a 100%)', padding: 'clamp(60px, 9vw, 100px) clamp(24px, 8%, 120px)' }}>
+
+        <h2 style={{ fontSize: 'clamp(22px, 3.5vw, 32px)', fontWeight: 700, lineHeight: 1.25, marginBottom: '20px' }}>
+          There is more to this
+        </h2>
+
+        <p style={{ fontSize: 'clamp(14px, 1.8vw, 16px)', lineHeight: 1.75, color: 'rgba(255,255,255,0.8)', maxWidth: '520px', marginBottom: '32px', fontFamily: sans }}>
+          Your secondary pattern changes how you read the primary. See both in your Deep Report.
+        </p>
+
+        <div style={{ borderTop: '1px solid rgba(255,255,255,0.12)', marginBottom: '32px' }} />
+
+        <p style={{ fontSize: 'clamp(14px, 1.8vw, 16px)', lineHeight: 1.85, color: 'rgba(255,255,255,0.75)', maxWidth: '560px', marginBottom: '48px', fontFamily: sans }}>
+          Finding your way forward takes some work — sometimes it takes professional help.
+          This report won&apos;t replace that. But it will make every conversation you have —
+          with a coach, a therapist, a trusted friend — significantly more efficient.
+          You arrive knowing what you&apos;re dealing with. The shortcut is already in your pocket.
+        </p>
+
+        <button
+          onClick={() => router.push(`/upgrade?id=${id}`)}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '12px',
+            padding: '11px 24px',
+            border: '1px solid rgba(255,255,255,0.55)',
+            color: '#fff',
+            fontSize: '11px',
+            letterSpacing: '2px',
+            textTransform: 'uppercase',
+            fontWeight: 500,
+            fontFamily: sans,
+            backgroundColor: 'transparent',
+            cursor: 'pointer',
+          }}
+        >
+          Get a full report
+          <span style={{ letterSpacing: '1px', opacity: 0.7 }}>————→</span>
+        </button>
+      </section>
+
+      {/* footer */}
+      <footer style={{ backgroundColor: '#0b1428', padding: '22px clamp(24px, 8%, 120px)', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <p style={{ fontSize: '10px', color: 'rgba(255,255,255,0.2)', letterSpacing: '1.5px', textTransform: 'uppercase', fontFamily: sans }}>
+          2026 copyright Life Pattern Engine
+        </p>
+      </footer>
+
+    </main>
   );
 }
