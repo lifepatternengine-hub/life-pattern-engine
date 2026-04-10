@@ -25,18 +25,6 @@ const archetypeLinks: Record<string, string> = {
 const serif = '"Inria Serif", Georgia, serif';
 const sans  = '"Inter", system-ui, -apple-system, sans-serif';
 
-/* ── archetype hero panels (gradient placeholders) ── */
-const archetypePanels: Record<string, [string, string, string]> = {
-  BOA: ['linear-gradient(160deg,#5a1010 0%,#3d0a0a 100%)', 'linear-gradient(160deg,#4a1060 0%,#9333ea 50%,#c026d3 100%)', 'linear-gradient(160deg,#8b1a1a 0%,#dc2626 60%,#f97316 100%)'],
-  SBM: ['linear-gradient(160deg,#1a2a1a 0%,#0f1f0f 100%)', 'linear-gradient(160deg,#1a3a2a 0%,#166534 50%,#15803d 100%)', 'linear-gradient(160deg,#2a3a1a 0%,#3f6212 60%,#65a30d 100%)'],
-  LCA: ['linear-gradient(160deg,#1a1a3a 0%,#0f0f2a 100%)', 'linear-gradient(160deg,#2a1a4a 0%,#7c3aed 50%,#a855f7 100%)', 'linear-gradient(160deg,#1a2a4a 0%,#1d4ed8 60%,#3b82f6 100%)'],
-  CE:  ['linear-gradient(160deg,#2a1a0a 0%,#1a0f00 100%)', 'linear-gradient(160deg,#3a2a0a 0%,#92400e 50%,#d97706 100%)', 'linear-gradient(160deg,#3a1a0a 0%,#b45309 60%,#f59e0b 100%)'],
-  default: ['linear-gradient(160deg,#1a1a2a 0%,#0f0f1a 100%)', 'linear-gradient(160deg,#2a1a3a 0%,#6d28d9 50%,#7c3aed 100%)', 'linear-gradient(160deg,#1a2a3a 0%,#1e40af 60%,#3b82f6 100%)'],
-};
-
-function getPanels(code: string): [string, string, string] {
-  return archetypePanels[code] ?? archetypePanels.default;
-}
 
 export default function ResultPage({ params }: { params: { id: string } }) {
   const { id } = params;
@@ -83,9 +71,8 @@ export default function ResultPage({ params }: { params: { id: string } }) {
     </main>
   );
 
-  const pCode  = result.primary_archetype;
-  const pName  = archetypeNames[pCode as keyof typeof archetypeNames] ?? pCode;
-  const panels = getPanels(pCode);
+  const pCode = result.primary_archetype;
+  const pName = archetypeNames[pCode as keyof typeof archetypeNames] ?? pCode;
 
   return (
     <main style={{ fontFamily: serif, color: '#fff' }}>
@@ -95,11 +82,9 @@ export default function ResultPage({ params }: { params: { id: string } }) {
       ══════════════════════════════════════════ */}
       <section style={{ backgroundColor: '#0b1428' }}>
 
-        {/* hero image panels */}
-        <div style={{ display: 'flex', height: 'clamp(200px, 28vw, 320px)', gap: '2px' }}>
-          <div style={{ flex: 1, background: panels[0] }} />
-          <div style={{ flex: 1, background: panels[1] }} />
-          <div style={{ flex: 1, background: panels[2] }} />
+        {/* hero image */}
+        <div style={{ height: 'clamp(200px, 28vw, 320px)', overflow: 'hidden' }}>
+          <img src="/mosaic.jpg" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
         </div>
 
         {/* archetype content */}
