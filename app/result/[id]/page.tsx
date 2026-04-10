@@ -84,7 +84,7 @@ export default function ResultPage({ params }: { params: { id: string } }) {
 
         {/* hero image */}
         <div style={{ height: 'clamp(200px, 28vw, 320px)', overflow: 'hidden' }}>
-          <img src="/mosaic.jpg" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
+          <img src="/mosaic2.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
         </div>
 
         {/* archetype content */}
