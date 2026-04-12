@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Trigger LPE Reddit Demand Finder agent
         run: |
-          curl -f https://api.anthropic.com/v1/sessions \
+          curl -v https://api.anthropic.com/v1/sessions \
             -H "x-api-key: ${{ secrets.ANTHROPIC_API_KEY }}" \
             -H "anthropic-beta: managed-agents-2026-04-01" \
             -H "content-type: application/json" \
