@@ -58,16 +58,8 @@ async function sendResultEmail(
   });
 
   const primaryName = ARCHETYPE_NAMES[primaryCode] ?? primaryCode;
-  const secondaryName = secondaryCode ? (ARCHETYPE_NAMES[secondaryCode] ?? secondaryCode) : null;
   const resultUrl = `https://life-pattern-engine.xyz/result/${responseId}`;
-
-  const secondaryBlock = secondaryCode && secondaryName ? `
-    <tr><td style="padding:32px 0 0;">
-      <p style="margin:0 0 6px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35);">Secondary archetype</p>
-      <p style="margin:0;font-size:22px;font-weight:700;color:#fff;">${secondaryCode}</p>
-      <p style="margin:4px 0 20px;font-size:16px;color:rgba(255,255,255,0.6);">${secondaryName}</p>
-      <a href="${NOTION_URLS[secondaryCode]}" style="display:inline-block;padding:10px 22px;border:1px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;">View secondary profile →</a>
-    </td></tr>` : '';
+  const upgradeUrl = `https://life-pattern-engine.xyz/upgrade?id=${responseId}`;
 
   await transporter.sendMail({
     from: 'Zdnk from Lifepattern Engine <lifepatternengine@gmail.com>',
@@ -82,6 +74,8 @@ async function sendResultEmail(
   <tr><td style="padding-bottom:40px;">
     <p style="margin:0;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.3);">Life Pattern Engine</p>
   </td></tr>
+
+  <!-- Primary archetype -->
   <tr><td>
     <p style="margin:0 0 32px;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.3);">Your pattern</p>
     <p style="margin:0 0 6px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35);">Primary archetype</p>
@@ -89,13 +83,29 @@ async function sendResultEmail(
     <p style="margin:4px 0 28px;font-size:22px;color:rgba(255,255,255,0.7);">${primaryName}</p>
     <a href="${NOTION_URLS[primaryCode]}" style="display:inline-block;padding:12px 26px;border:1px solid rgba(255,255,255,0.65);color:#fff;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;">View full profile →</a>
   </td></tr>
-  ${secondaryBlock}
-  <tr><td style="padding:40px 0 0;">
+
+  <!-- Result page link -->
+  <tr><td style="padding:32px 0 0;">
     <a href="${resultUrl}" style="display:inline-block;padding:12px 26px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.7);font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;">View your result page →</a>
   </td></tr>
+
+  <!-- Paywall teaser -->
+  <tr><td style="padding:40px 0 0;">
+    <table width="100%" cellpadding="0" cellspacing="0" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);padding:28px;">
+      <tr><td>
+        <p style="margin:0 0 12px;font-size:16px;font-weight:700;color:#fff;">There is more to this.</p>
+        <p style="margin:0 0 20px;font-size:13px;line-height:1.8;color:rgba(255,255,255,0.6);">Your secondary pattern changes how you read the primary. The Deep Report includes both archetypes, their interaction, and practical next steps for your specific combination.</p>
+        <a href="${upgradeUrl}" style="display:inline-block;padding:12px 26px;border:1px solid rgba(255,255,255,0.5);color:#fff;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;">Get the Deep Report — €39 →</a>
+      </td></tr>
+    </table>
+  </td></tr>
+
+  <!-- Note -->
   <tr><td style="padding:32px 0 0;">
     <p style="margin:0;font-size:12px;line-height:1.8;color:rgba(255,255,255,0.3);">This is a diagnostic result — a map of where you are, not instructions for where to go.</p>
   </td></tr>
+
+  <!-- Footer -->
   <tr><td style="padding:32px 0 0;border-top:1px solid rgba(255,255,255,0.06);">
     <p style="margin:0;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.2);">2026 copyright LIFE PATTERN ENGINE</p>
   </td></tr>
