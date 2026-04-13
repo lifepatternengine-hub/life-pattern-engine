@@ -32,7 +32,7 @@ jobs:
           fi
 
           # Step 2 — extract session ID and send message
-          SESSION_ID=$(echo "$BODY" | grep -o '"id":"[^"]*"' | head -1 | cut -d'"' -f4)
+          SESSION_ID=$(echo "$BODY" | grep -o '"id":"sesn_[^"]*"' | head -1 | cut -d'"' -f4)
           echo "Session ID: $SESSION_ID"
 
           MSG_RESPONSE=$(curl -s -w "\n%{http_code}" \
