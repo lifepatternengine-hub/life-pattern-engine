@@ -15,6 +15,7 @@ jobs:
           RESPONSE=$(curl -s -w "\n%{http_code}" \
             -X POST https://api.anthropic.com/v1/sessions \
             -H "x-api-key: ${{ secrets.ANTHROPIC_API_KEY }}" \
+            -H "anthropic-version: 2023-06-01" \
             -H "anthropic-beta: managed-agents-2026-04-01" \
             -H "content-type: application/json" \
             -d '{"agent": "agent_011CZz9k6cjwBp4fr19WHtqK", "environment_id": "env_01AKkfDeP5JfCzFfCcQ9bGXX"}')
