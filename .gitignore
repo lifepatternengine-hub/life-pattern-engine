@@ -39,3 +39,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+workflows/reddit-demand-finder-agent.yaml
+workflows/linkedin-post-agent.yaml
