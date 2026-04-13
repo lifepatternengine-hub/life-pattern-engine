@@ -176,9 +176,15 @@ def main():
     response_text = search_reddit(manager_notes)
     print(f"Claude response received ({len(response_text)} chars)")
 
+    print("\nClaude raw response (first 1000 chars):")
+    print(response_text[:1000])
+
     print("\nParsing threads...")
     threads = parse_threads(response_text)
     print(f"Found {len(threads)} threads")
+    if not threads:
+        print("DEBUG — full response for inspection:")
+        print(response_text)
 
     if threads:
         print("\nLogging to Notion Reddit Log...")
