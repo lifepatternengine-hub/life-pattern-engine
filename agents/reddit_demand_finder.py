@@ -9,7 +9,7 @@ import json
 import os
 import requests
 import time
-from datetime import date
+from datetime import date, timedelta
 
 ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
 NOTION_TOKEN = os.environ["NOTION_TOKEN"]
@@ -17,6 +17,7 @@ NOTION_VERSION = "2022-06-28"
 REDDIT_LOG_DB = "18c11f99-b5b3-4d23-82f8-69609e5fad12"
 MANAGER_NOTES_PAGE = "340a21b2a01b8114b572cd9d198bc6ba"
 TODAY = date.today().isoformat()
+WEEKLY_THRESHOLD = 10  # Skip run if this many threads already logged this week
 
 SYSTEM_PROMPT = """You are the Reddit Demand Finder agent for Life Pattern Engine — a diagnostic tool identifying 15 mid-career patterns in people aged 35-55.
 
@@ -73,6 +74,32 @@ def get_manager_notes():
     except Exception as e:
         print(f"Warning: Could not read Manager Notes: {e}")
     return ""
+
+
+def count_weekly_threads():
+    """Count threads already logged since Monday of this week."""
+    monday = (date.today() - timedelta(days=date.today().weekday())).isoformat()
+    try:
+        r = requests.post(
+            f"https://api.notion.com/v1/databases/{REDDIT_LOG_DB}/query",
+            headers={
+                "Authorization": f"Bearer {NOTION_TOKEN}",
+                "Notion-Version": NOTION_VERSION,
+                "Content-Type": "application/json"
+            },
+            json={
+                "filter": {
+                    "timestamp": "created_time",
+                    "created_time": {"on_or_after": monday}
+                },
+                "page_size": 100
+            }
+        )
+        if r.status_code == 200:
+            return len(r.json().get("results", []))
+    except Exception as e:
+        print(f"Warning: Could not count weekly threads: {e}")
+    return 0
 
 
 def search_reddit(manager_notes):
@@ -165,7 +192,14 @@ def main():
     print("=== LPE Reddit Demand Finder ===")
     print(f"Date: {TODAY}\n")
 
-    print("Reading Manager Notes...")
+    print("Checking weekly thread count...")
+    weekly_count = count_weekly_threads()
+    print(f"Threads logged this week: {weekly_count}/{WEEKLY_THRESHOLD}")
+    if weekly_count >= WEEKLY_THRESHOLD:
+        print(f"Already at threshold — skipping search. Next run tomorrow will check again.")
+        return
+
+    print("\nReading Manager Notes...")
     manager_notes = get_manager_notes()
     if manager_notes:
         print(f"Manager Notes loaded ({len(manager_notes)} chars)")
@@ -176,14 +210,11 @@ def main():
     response_text = search_reddit(manager_notes)
     print(f"Claude response received ({len(response_text)} chars)")
 
-    print("\nClaude raw response (first 1000 chars):")
-    print(response_text[:1000])
-
     print("\nParsing threads...")
     threads = parse_threads(response_text)
     print(f"Found {len(threads)} threads")
     if not threads:
-        print("DEBUG — full response for inspection:")
+        print("No JSON found in response — full output:")
         print(response_text)
 
     if threads:
