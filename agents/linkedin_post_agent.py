@@ -1,4 +1,5 @@
-#!/usr/bin/env python3"""
+#!/usr/bin/env python3
+"""
 LPE LinkedIn Post Agent
 Reads Reddit archetype signal from Notion, generates 2 post drafts, logs to Post Bank.
 """
