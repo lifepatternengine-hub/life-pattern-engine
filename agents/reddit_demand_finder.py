@@ -8,6 +8,7 @@ import anthropic
 import json
 import os
 import requests
+import time
 from datetime import date
 
 ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
@@ -82,18 +83,27 @@ def search_reddit(manager_notes):
     if manager_notes:
         user_message += f"\n\nManager Notes for this run:\n{manager_notes}"
 
-    response = client.beta.messages.create(
-        model="claude-sonnet-4-6",
-        max_tokens=8096,
-        system=SYSTEM_PROMPT,
-        tools=[{
-            "type": "web_search_20250305",
-            "name": "web_search",
-            "max_uses": 20
-        }],
-        messages=[{"role": "user", "content": user_message}],
-        betas=["web-search-2025-03-05"]
-    )
+    for attempt in range(3):
+        try:
+            response = client.beta.messages.create(
+                model="claude-sonnet-4-6",
+                max_tokens=4096,
+                system=SYSTEM_PROMPT,
+                tools=[{
+                    "type": "web_search_20250305",
+                    "name": "web_search",
+                    "max_uses": 6
+                }],
+                messages=[{"role": "user", "content": user_message}],
+                betas=["web-search-2025-03-05"]
+            )
+            break
+        except anthropic.RateLimitError:
+            if attempt < 2:
+                print(f"Rate limit hit, waiting 60s (attempt {attempt + 1}/3)...")
+                time.sleep(60)
+            else:
+                raise
 
     # Extract text content from response
     full_text = ""
