@@ -127,7 +127,7 @@ def log_to_notion(thread):
             "Archetype": {"select": {"name": thread.get("archetype", "")}},
             "Core Pain": {"rich_text": [{"text": {"content": thread.get("core_pain", "")[:2000]}}]},
             "URL": {"url": thread.get("url", "")},
-            "Engagement": {"number": int(thread.get("engagement", 0))},
+            "Engagement": {"number": int(thread.get("engagement") or 0)},
             "Reply Sent": {"checkbox": False},
             "Response": {"select": {"name": "No reply yet"}},
             "date:Date:start": {"date": {"start": TODAY}},
