@@ -6,51 +6,35 @@ on:
   workflow_dispatch:
 
 jobs:
-  trigger-agent:
+  run-agent:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
-      - name: Trigger Reddit Demand Finder
+      - name: Run Reddit Demand Finder
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
         run: |
-          # Step 1 — create session
           RESPONSE=$(curl -s -w "\n%{http_code}" \
-            -X POST https://api.anthropic.com/v1/sessions \
-            -H "x-api-key: ${{ secrets.ANTHROPIC_API_KEY }}" \
+            -X POST "https://api.anthropic.com/v1/messages" \
+            -H "x-api-key: $ANTHROPIC_API_KEY" \
             -H "anthropic-version: 2023-06-01" \
-            -H "anthropic-beta: managed-agents-2026-04-01" \
             -H "content-type: application/json" \
-            -d '{"agent": "agent_011Ca1Z8Bk6iyQm7kL3d7YPj", "environment_id": "env_01AKkfDeP5JfCzFfCcQ9bGXX"}')
+            -d "{
+              \"model\": \"claude-sonnet-4-6\",
+              \"max_tokens\": 8096,
+              \"system\": \"You are the Reddit Demand Finder agent for Life Pattern Engine — a diagnostic tool that identifies 15 mid-career patterns in people aged 35-55.\n\nYour Notion integration token: $NOTION_TOKEN\n\nSTEP 1 - Read Manager Notes from Notion. Make this API call and read the response:\ncurl -s https://api.notion.com/v1/blocks/340a21b2a01b8114b572cd9d198bc6ba/children -H 'Authorization: Bearer $NOTION_TOKEN' -H 'Notion-Version: 2022-06-28'\nAdjust your search focus and reply style based on what you find.\n\nSTEP 2 - Search Reddit for posts from the last 7 days across: r/midlife, r/findapath, r/careerguidance, r/career, r/antiwork, r/30s, r/40s\n\nFind 5-10 posts matching these archetypes: BOA (Burned-out Achiever), SBM (Stable But Meaningless), LCA (Late Creative Awakening), CE (Corporate Exit), CP (Career Plateau), RE (Reluctant Entrepreneur), VR (Values Rupture), RO (Responsibility Overload), GD (Geographic Displacement), DA (Delayed Ambition), SC (Specialist Ceiling), PSV (Post-Success Vacuum), LRP (Late Reinvention Path), PCT (Portfolio Career Transition), ISG (Identity-Skill Gap)\n\nFor each post: title, subreddit, URL, engagement count, archetype, core pain in one sentence, 2-3 sentence draft reply as Zdnk (personal, human, no product mention, ends with open question).\n\nSTEP 3 - Log each post to Notion Reddit Log. For each post make this API call:\ncurl -s -X POST https://api.notion.com/v1/pages -H 'Authorization: Bearer $NOTION_TOKEN' -H 'Notion-Version: 2022-06-28' -H 'Content-Type: application/json' -d '{\\\"parent\\\":{\\\"database_id\\\":\\\"18c11f99-b5b3-4d23-82f8-69609e5fad12\\\"},\\\"properties\\\":{\\\"Thread Title\\\":{\\\"title\\\":[{\\\"text\\\":{\\\"content\\\":\\\"TITLE\\\"}}]},\\\"Subreddit\\\":{\\\"select\\\":{\\\"name\\\":\\\"SUBREDDIT\\\"}},\\\"Archetype\\\":{\\\"select\\\":{\\\"name\\\":\\\"ARCHETYPE\\\"}},\\\"Core Pain\\\":{\\\"rich_text\\\":[{\\\"text\\\":{\\\"content\\\":\\\"PAIN\\\"}}]},\\\"URL\\\":{\\\"url\\\":\\\"URL\\\"},\\\"Engagement\\\":{\\\"number\\\":0},\\\"Reply Sent\\\":{\\\"checkbox\\\":false},\\\"Response\\\":{\\\"select\\\":{\\\"name\\\":\\\"No reply yet\\\"}},\\\"date:Date:start\\\":{\\\"date\\\":{\\\"start\\\":\\\"DATE\\\"}},\\\"date:Agent Run Date:start\\\":{\\\"date\\\":{\\\"start\\\":\\\"DATE\\\"}}}}'\\n\\nReplace TITLE, SUBREDDIT, ARCHETYPE, PAIN, URL, DATE with actual values for each post.\n\nSTEP 4 - Output archetype signal summary table and 3-5 bullet manager briefing.\",
+              \"messages\": [{\"role\": \"user\", \"content\": \"Start your daily Reddit search now. Follow all steps.\"}]
+            }")
 
           HTTP_STATUS=$(echo "$RESPONSE" | tail -n1)
           BODY=$(echo "$RESPONSE" | head -n-1)
-          echo "Create session — HTTP Status: $HTTP_STATUS"
-          echo "Response: $BODY"
 
+          echo "HTTP Status: $HTTP_STATUS"
           if [ "$HTTP_STATUS" -lt 200 ] || [ "$HTTP_STATUS" -gt 299 ]; then
-            echo "ERROR: Failed to create session"
+            echo "ERROR: $BODY"
             exit 1
           fi
 
-          # Step 2 — extract session ID and send message
-          SESSION_ID=$(echo "$BODY" | grep -o '"id":"sesn_[^"]*"' | head -1 | cut -d'"' -f4)
-          echo "Session ID: $SESSION_ID"
-
-          MSG_RESPONSE=$(curl -s -w "\n%{http_code}" \
-            -X POST "https://api.anthropic.com/v1/sessions/$SESSION_ID/turns" \
-            -H "x-api-key: ${{ secrets.ANTHROPIC_API_KEY }}" \
-            -H "anthropic-version: 2023-06-01" \
-            -H "anthropic-beta: managed-agents-2026-04-01" \
-            -H "content-type: application/json" \
-            -d '{"role": "user", "content": "Start your daily Reddit search now. Follow all steps in your system prompt."}')
-
-          MSG_STATUS=$(echo "$MSG_RESPONSE" | tail -n1)
-          MSG_BODY=$(echo "$MSG_RESPONSE" | head -n-1)
-          echo "Send message — HTTP Status: $MSG_STATUS"
-          echo "Response: $MSG_BODY"
-
-          if [ "$MSG_STATUS" -lt 200 ] || [ "$MSG_STATUS" -gt 299 ]; then
-            echo "ERROR: Failed to send message to session"
-            exit 1
-          fi
-
-          echo "Agent triggered and running."
+          echo "Agent completed successfully."
