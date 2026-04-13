@@ -3,23 +3,31 @@ name: LPE LinkedIn Post Agent
 on:
   schedule:
     - cron: '0 6 * * 1,4'   # Monday + Thursday 8am Berlin (6am UTC)
-  workflow_dispatch:          # Manual trigger in GitHub UI
+  workflow_dispatch:
 
 jobs:
   trigger-agent:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Trigger LPE LinkedIn Post Agent
+      - name: Trigger LinkedIn Post Agent
         run: |
-          curl -v https://api.anthropic.com/v1/sessions \
+          RESPONSE=$(curl -s -w "\n%{http_code}" \
+            -X POST https://api.anthropic.com/v1/sessions \
             -H "x-api-key: ${{ secrets.ANTHROPIC_API_KEY }}" \
             -H "anthropic-beta: managed-agents-2026-04-01" \
             -H "content-type: application/json" \
-            -d '{
-              "agent_id": "agent_011CZzUzwxyAs7HZ8hHFzG67",
-              "environment_id": "env_01AKkfDeP5JfCzFfCcQ9bGXX"
-            }'
+            -d '{"agent_id": "agent_011CZzUzwxyAs7HZ8hHFzG67", "environment_id": "env_01AKkfDeP5JfCzFfCcQ9bGXX"}')
 
-      - name: Confirm
-        run: echo "LinkedIn Post Agent triggered — check Notion Post Bank for drafts."
+          HTTP_STATUS=$(echo "$RESPONSE" | tail -n1)
+          BODY=$(echo "$RESPONSE" | head -n-1)
+
+          echo "HTTP Status: $HTTP_STATUS"
+          echo "Response: $BODY"
+
+          if [ "$HTTP_STATUS" -lt 200 ] || [ "$HTTP_STATUS" -gt 299 ]; then
+            echo "ERROR: API call failed with status $HTTP_STATUS"
+            exit 1
+          fi
+
+          echo "Agent triggered successfully."
