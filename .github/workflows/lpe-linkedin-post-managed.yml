@@ -1,0 +1,32 @@
+name: LPE LinkedIn Post Agent (Managed)
+
+on:
+  schedule:
+    - cron: '0 6 * * 1,4'   # Monday + Thursday 8am Berlin (6am UTC)
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  run-agent:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install anthropic
+
+      - name: Run LinkedIn Post Agent session
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          AGENT_ID: ${{ secrets.LPE_AGENT_ID }}
+          ENVIRONMENT_ID: ${{ secrets.LPE_ENVIRONMENT_ID }}
+          VAULT_ID: ${{ secrets.LPE_VAULT_ID }}
+        run: python run_session.py
