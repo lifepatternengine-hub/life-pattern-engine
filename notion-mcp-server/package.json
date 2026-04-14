@@ -1,0 +1,11 @@
+{
+  "name": "notion-mcp-server",
+  "version": "1.0.0",
+  "description": "Notion MCP server for LPE managed agents",
+  "scripts": {
+    "start": "npx -y supergateway --stdio \"npx -y @notionhq/notion-mcp-server\" --port ${PORT:-3000} --baseUrl ${BASE_URL}"
+  },
+  "dependencies": {
+    "supergateway": "latest"
+  }
+}
