@@ -154,6 +154,14 @@ def parse_threads(response_text):
     return []
 
 
+def _parse_engagement(value):
+    if not value:
+        return 0
+    import re
+    m = re.search(r'\d+', str(value))
+    return int(m.group()) if m else 0
+
+
 def log_to_notion(thread):
     """Create a page in the Reddit Log database."""
     payload = {
@@ -164,11 +172,11 @@ def log_to_notion(thread):
             "Archetype": {"select": {"name": thread.get("archetype", "")}},
             "Core Pain": {"rich_text": [{"text": {"content": thread.get("core_pain", "")[:2000]}}]},
             "URL": {"url": thread.get("url", "")},
-            "Engagement": {"number": int(thread.get("engagement") or 0)},
+            "Engagement": {"number": _parse_engagement(thread.get("engagement"))},
             "Reply Sent": {"checkbox": False},
             "Response": {"select": {"name": "No reply yet"}},
-            "date:Date:start": {"date": {"start": TODAY}},
-            "date:Agent Run Date:start": {"date": {"start": TODAY}}
+            "Date": {"date": {"start": TODAY}},
+            "Agent Run Date": {"date": {"start": TODAY}}
         }
     }
 
