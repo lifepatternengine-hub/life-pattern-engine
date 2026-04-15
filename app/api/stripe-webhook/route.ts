@@ -5,6 +5,7 @@ import Anthropic from '@anthropic-ai/sdk';
 import nodemailer from 'nodemailer';
 import archetypesData from '@/lib/archetypes.json';
 import { stories } from '@/lib/stories';
+import { logDeepReportToNotion } from '@/lib/notion-logger';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2026-03-25.dahlia',
@@ -236,6 +237,9 @@ export async function POST(req: NextRequest) {
         console.error('Deep Report email error:', emailErr);
       }
     }
+
+    // Log to Notion
+    await logDeepReportToNotion(resultId, response.primary_archetype, response.secondary_archetype ?? null, combinationAnalysis).catch(() => {});
   }
 
   return NextResponse.json({ received: true });

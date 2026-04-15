@@ -4,6 +4,7 @@ import Anthropic from '@anthropic-ai/sdk';
 import nodemailer from 'nodemailer';
 import archetypesData from '@/lib/archetypes.json';
 import { stories } from '@/lib/stories';
+import { logDeepReportToNotion } from '@/lib/notion-logger';
 
 const ARCHETYPE_NAMES: Record<string, string> = {
   BOA: 'Burned-out Achiever', SBM: 'Stable But Meaningless', LCA: 'Late Creative Awakening',
@@ -207,6 +208,9 @@ export async function GET(
     subject: `Your Deep Report — ${primaryCode}${secondaryCode ? ' + ' + secondaryCode : ''}`,
     html: buildEmail(primaryCode, secondaryCode, combinationAnalysis, reportUrl),
   });
+
+  // Log to Notion
+  await logDeepReportToNotion(id, primaryCode, secondaryCode, combinationAnalysis).catch(() => {});
 
   return NextResponse.json({
     ok: true,
