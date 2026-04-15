@@ -180,6 +180,7 @@ export async function GET(
 
   const primaryCode = data.primary_archetype;
   const secondaryCode = data.secondary_archetype ?? null;
+  const sendEmail = req.nextUrl.searchParams.get('notify') !== 'false';
 
   // Generate combination analysis if not cached
   let combinationAnalysis = data.combination_analysis ?? '';
@@ -191,7 +192,12 @@ export async function GET(
     await supabase.from('responses').update({ combination_analysis: combinationAnalysis }).eq('id', id);
   }
 
-  // Send rich full-report email
+  // Send rich full-report email (skip if ?notify=false)
+  if (!sendEmail) {
+    await logDeepReportToNotion(id, primaryCode, secondaryCode, combinationAnalysis).catch(() => {});
+    return NextResponse.json({ ok: true, notionOnly: true, primary: primaryCode, secondary: secondaryCode });
+  }
+
   const appPassword = process.env.GMAIL_APP_PASSWORD?.replace(/\s+/g, '');
   if (!appPassword) return NextResponse.json({ error: 'GMAIL_APP_PASSWORD not set' }, { status: 500 });
 
