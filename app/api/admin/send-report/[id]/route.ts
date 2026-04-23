@@ -176,7 +176,6 @@ export async function GET(
     .single();
 
   if (error || !data) return NextResponse.json({ error: 'Not found' }, { status: 404 });
-  if (!data.paid) return NextResponse.json({ error: 'Row is not marked as paid' }, { status: 402 });
 
   const primaryCode = data.primary_archetype;
   const secondaryCode = data.secondary_archetype ?? null;
