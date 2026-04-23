@@ -207,7 +207,9 @@ export async function GET(
 
   // Send rich full-report email (skip if ?notify=false)
   if (!sendEmail) {
-    await logDeepReportToNotion(id, primaryCode, secondaryCode, combinationAnalysis).catch(() => {});
+    if (combinationSource === 'generated') {
+      await logDeepReportToNotion(id, primaryCode, secondaryCode, combinationAnalysis).catch(() => {});
+    }
     return NextResponse.json({ ok: true, notionOnly: true, primary: primaryCode, secondary: secondaryCode, combinationSource, combinationLength: combinationAnalysis.length });
   }
 
