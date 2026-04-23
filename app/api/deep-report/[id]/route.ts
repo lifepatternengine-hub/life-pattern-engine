@@ -69,7 +69,7 @@ export async function GET(
 
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    (process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)!
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
   );
 
   const { data, error } = await supabase
@@ -107,12 +107,12 @@ export async function GET(
         data.secondary_archetype,
         ARCHETYPE_NAMES[data.secondary_archetype] ?? data.secondary_archetype
       );
-
-      // Cache it in Supabase
-      await supabase
-        .from('responses')
-        .update({ combination_analysis: combinationAnalysis })
-        .eq('id', id);
+      if (combinationAnalysis) {
+        await supabase
+          .from('responses')
+          .update({ combination_analysis: combinationAnalysis })
+          .eq('id', id);
+      }
     } catch (err) {
       console.error('Combination generation error:', err);
     }

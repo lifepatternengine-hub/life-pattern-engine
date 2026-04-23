@@ -166,7 +166,7 @@ export async function GET(
 
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    (process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)!
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
   );
 
   const { data, error } = await supabase
@@ -184,18 +184,31 @@ export async function GET(
 
   // Generate combination analysis if not cached
   let combinationAnalysis = data.combination_analysis ?? '';
+  let combinationSource = 'cached';
   if (!combinationAnalysis && secondaryCode && process.env.ANTHROPIC_API_KEY) {
-    combinationAnalysis = await generateCombinationAnalysis(
-      primaryCode, ARCHETYPE_NAMES[primaryCode] ?? primaryCode,
-      secondaryCode, ARCHETYPE_NAMES[secondaryCode] ?? secondaryCode
-    );
-    await supabase.from('responses').update({ combination_analysis: combinationAnalysis }).eq('id', id);
+    try {
+      combinationAnalysis = await generateCombinationAnalysis(
+        primaryCode, ARCHETYPE_NAMES[primaryCode] ?? primaryCode,
+        secondaryCode, ARCHETYPE_NAMES[secondaryCode] ?? secondaryCode
+      );
+      combinationSource = 'generated';
+      if (combinationAnalysis) {
+        await supabase.from('responses').update({ combination_analysis: combinationAnalysis }).eq('id', id);
+      }
+    } catch (err) {
+      console.error('Combination generation error:', err);
+      combinationSource = 'error';
+    }
+  } else if (!secondaryCode) {
+    combinationSource = 'no-secondary';
+  } else if (!process.env.ANTHROPIC_API_KEY) {
+    combinationSource = 'no-api-key';
   }
 
   // Send rich full-report email (skip if ?notify=false)
   if (!sendEmail) {
     await logDeepReportToNotion(id, primaryCode, secondaryCode, combinationAnalysis).catch(() => {});
-    return NextResponse.json({ ok: true, notionOnly: true, primary: primaryCode, secondary: secondaryCode });
+    return NextResponse.json({ ok: true, notionOnly: true, primary: primaryCode, secondary: secondaryCode, combinationSource, combinationLength: combinationAnalysis.length });
   }
 
   const appPassword = process.env.GMAIL_APP_PASSWORD?.replace(/\s+/g, '');
