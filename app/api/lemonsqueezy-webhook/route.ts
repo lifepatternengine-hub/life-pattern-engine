@@ -1,15 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import Stripe from 'stripe';
+import crypto from 'crypto';
 import { createClient } from '@supabase/supabase-js';
 import Anthropic from '@anthropic-ai/sdk';
 import nodemailer from 'nodemailer';
 import archetypesData from '@/lib/archetypes.json';
 import { stories } from '@/lib/stories';
 import { logDeepReportToNotion } from '@/lib/notion-logger';
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2026-03-25.dahlia',
-});
 
 const ARCHETYPE_NAMES: Record<string, string> = {
   BOA: 'Burned-out Achiever', SBM: 'Stable But Meaningless', LCA: 'Late Creative Awakening',
@@ -157,29 +153,26 @@ function buildEmail(
 
 export async function POST(req: NextRequest) {
   const body = await req.text();
-  const sig = req.headers.get('stripe-signature');
-  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+  const sig = req.headers.get('x-signature');
+  const webhookSecret = process.env.LEMONSQUEEZY_WEBHOOK_SECRET;
 
-  let event: Stripe.Event;
-
-  try {
-    if (webhookSecret && sig) {
-      event = stripe.webhooks.constructEvent(body, sig, webhookSecret);
-    } else {
-      // Dev fallback — no signature verification
-      event = JSON.parse(body);
+  if (webhookSecret && sig) {
+    const hmac = crypto.createHmac('sha256', webhookSecret);
+    const digest = hmac.update(body).digest('hex');
+    if (digest !== sig) {
+      console.error('Lemon Squeezy webhook signature mismatch');
+      return NextResponse.json({ error: 'Invalid signature' }, { status: 400 });
     }
-  } catch (err: any) {
-    console.error('Stripe webhook signature error:', err.message);
-    return NextResponse.json({ error: 'Invalid signature' }, { status: 400 });
   }
 
-  if (event.type === 'checkout.session.completed') {
-    const session = event.data.object as Stripe.Checkout.Session;
-    const resultId = session.metadata?.resultId;
+  const event = JSON.parse(body);
+  const eventName = event?.meta?.event_name;
+
+  if (eventName === 'order_created') {
+    const resultId = event?.meta?.custom_data?.resultId;
 
     if (!resultId) {
-      console.error('No resultId in session metadata');
+      console.error('No resultId in webhook custom_data');
       return NextResponse.json({ error: 'Missing resultId' }, { status: 400 });
     }
 
@@ -188,7 +181,6 @@ export async function POST(req: NextRequest) {
       (process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)!
     );
 
-    // Mark as paid
     const { data: response, error } = await supabase
       .from('responses')
       .update({ paid: true })
@@ -201,7 +193,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'DB update failed' }, { status: 500 });
     }
 
-    // Generate combination analysis
     let combinationAnalysis = '';
     if (response.secondary_archetype && process.env.ANTHROPIC_API_KEY) {
       try {
@@ -217,7 +208,6 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // Send full Deep Report email
     const appPassword = process.env.GMAIL_APP_PASSWORD?.replace(/\s+/g, '');
     if (appPassword) {
       try {
@@ -238,7 +228,6 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // Log to Notion
     await logDeepReportToNotion(resultId, response.primary_archetype, response.secondary_archetype ?? null, combinationAnalysis).catch(() => {});
   }
 
