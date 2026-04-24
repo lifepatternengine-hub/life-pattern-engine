@@ -35,15 +35,21 @@ export default function ResultPage({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     async function load() {
-      try {
-        const res = await fetch(`/api/result/${id}`);
-        if (!res.ok) { setError('Result not found'); setLoading(false); return; }
-        setResult(await res.json());
-      } catch {
-        setError('An error occurred');
-      } finally {
-        setLoading(false);
+      // Tally redirects before the webhook saves — retry for up to 8s
+      const maxAttempts = 8;
+      for (let attempt = 0; attempt < maxAttempts; attempt++) {
+        try {
+          const res = await fetch(`/api/result/${id}`);
+          if (res.ok) {
+            setResult(await res.json());
+            setLoading(false);
+            return;
+          }
+        } catch {}
+        if (attempt < maxAttempts - 1) await new Promise(r => setTimeout(r, 1000));
       }
+      setError('Result not found');
+      setLoading(false);
     }
     load();
   }, [id]);
